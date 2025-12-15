@@ -29,7 +29,7 @@ const InvestorDashboard = () => {
   };
 
   // Dados corrigidos baseados no plano - forçando 2% para usuários platinum
-  const isPremium = user?.plano === 'platinum';
+  const isPremium = user?.plan_id === 2 || user?.status === 'platinum';
   const rentabilidadeMensal = 2.0; // Sempre 2% para dashboard interno
   const liquidezPeriodo = isPremium ? 'Trimestral' : 'Semestral';
   const proximaTransferencia = isPremium ? '15/07/2024' : '15/08/2024';
@@ -76,7 +76,7 @@ const InvestorDashboard = () => {
               <img src="/lovable-uploads/ce9a3483-706c-4620-a853-024a9c09c5b8.png" alt="Club8 Logo" className="h-16 w-auto mr-4" />
               <div>
                 <h1 className="text-2xl font-bold text-club8-turquoise">Área do Investidor</h1>
-                <p className="text-gray-300">Bem-vindo, {user?.nome}</p>
+                <p className="text-gray-300">Bem-vindo, {user?.name}</p>
               </div>
             </div>
             <Button 
@@ -193,10 +193,10 @@ const InvestorDashboard = () => {
                 <EditPersonalDataDialog />
               </div>
               <div className="space-y-2 text-sm">
-                <p><strong>Nome:</strong> {user?.nome}</p>
+                <p><strong>Nome:</strong> {user?.name}</p>
                 <p><strong>Email:</strong> {user?.email}</p>
                 {user?.crm && <p><strong>CRM:</strong> {user.crm}</p>}
-                {user?.especialidade && <p><strong>Especialidade:</strong> {user.especialidade}</p>}
+                {user?.specialty && <p><strong>Especialidade:</strong> {user.specialty}</p>}
               </div>
             </Card>
           </div>

@@ -41,18 +41,28 @@ const LoginSection = () => {
       return;
     }
 
-    const success = await login(formData.email, formData.password);
+    if (!formData.password) {
+      toast({
+        title: "Erro",
+        description: "Por favor, informe sua senha.",
+        variant: "destructive",
+      });
+      setLoading(false);
+      return;
+    }
+
+    const result = await login(formData.email, formData.password);
     
-    if (success) {
+    if (result.success) {
       toast({
         title: "Login realizado com sucesso!",
-        description: isAllowedEmail ? "Acesso liberado automaticamente!" : "Redirecionando para o dashboard...",
+        description: "Redirecionando para o dashboard...",
       });
       navigate('/dashboard');
     } else {
       toast({
         title: "Erro no login",
-        description: "Email não encontrado ou senha incorreta. Verifique seus dados.",
+        description: result.error || "Email não encontrado ou senha incorreta. Verifique seus dados.",
         variant: "destructive",
       });
     }
