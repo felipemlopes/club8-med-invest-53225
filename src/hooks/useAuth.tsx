@@ -1,5 +1,5 @@
 
-import { useState, createContext, useContext, ReactNode } from 'react';
+import { useState, createContext, useContext, ReactNode, useEffect } from 'react';
 
 interface User {
   id: string;
@@ -17,15 +17,29 @@ interface AuthContextType {
   logout: () => void;
   updateUser: (userData: Partial<User>) => void;
   isAuthenticated: boolean;
+  isLoading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(() => {
-    const savedUser = localStorage.getItem('club8_user');
-    return savedUser ? JSON.parse(savedUser) : null;
-  });
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    try {
+      const savedUser = localStorage.getItem('club8_user');
+      if (savedUser) {
+        const parsedUser = JSON.parse(savedUser);
+        setUser(parsedUser);
+      }
+    } catch (error) {
+      console.error('Erro ao recuperar usuário do localStorage:', error);
+      localStorage.removeItem('club8_user');
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   // Emails com acesso liberado (sem necessidade de senha)
   const allowedEmails = [
@@ -160,7 +174,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       register,
       logout,
       updateUser,
-      isAuthenticated: !!user
+      isAuthenticated: !!user,
+      isLoading
     }}>
       {children}
     </AuthContext.Provider>
