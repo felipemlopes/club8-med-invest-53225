@@ -130,7 +130,7 @@ const LoginSection = () => {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Ainda não tem conta?{' '}
-              <a href="/#seja-socio" className="font-semibold text-club8-turquoise hover:underline">
+              <a href="/cadastro" className="font-semibold text-club8-turquoise hover:underline">
                 Cadastre-se aqui
               </a>
             </p>

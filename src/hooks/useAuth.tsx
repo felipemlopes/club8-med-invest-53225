@@ -38,6 +38,8 @@ interface RegisterData {
   uf?: string;
   city?: string;
   specialty?: string;
+  phone?: string;
+  plan_id?: number;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
