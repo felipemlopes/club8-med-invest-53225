@@ -13,22 +13,22 @@ const Header = () => {
     href: '/quem-somos'
   }, {
     label: 'Seja Sócio',
-    href: '#seja-socio'
+    href: '/#seja-socio'
   }, {
     label: 'Planos',
-    href: '#planos'
+    href: '/#planos'
   }, {
     label: 'Simulador',
-    href: '#simulador'
+    href: '/#simulador'
   }, {
     label: 'Cotas',
-    href: '#cotas'
+    href: '/#cotas'
   }, {
     label: 'Garantias',
     href: '/garantias'
   }, {
     label: 'Contato',
-    href: '#contato'
+    href: '/#contato'
   }];
 
   const handleAuthAction = () => {

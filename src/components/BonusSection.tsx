@@ -173,7 +173,11 @@ const BonusSection = () => {
           </div>
 
           <div className="text-center mt-8">
-            <Button size="lg" className="bg-club8-dark hover:bg-gray-800 text-white px-8 py-4 text-lg">
+            <Button onClick={() => {
+              document
+                  .getElementById('seja-socio')
+                  ?.scrollIntoView({ behavior: 'smooth' })
+            }} size="lg" className="bg-club8-dark hover:bg-gray-800 text-white px-8 py-4 text-lg">
               Quero Aproveitar os Benefícios
             </Button>
           </div>

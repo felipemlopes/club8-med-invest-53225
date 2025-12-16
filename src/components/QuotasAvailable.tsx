@@ -2,12 +2,14 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { TrendingUp, Clock, Users } from 'lucide-react';
+import { useNavigate } from 'react-router-dom'
 
 const QuotasAvailable = () => {
   const [totalQuotas] = useState(200); // Total de cotas disponíveis (aumentado para 10M)
   const [quotasVendidas] = useState(134); // Cotas já vendidas (proporcional)
   const quotasDisponiveis = totalQuotas - quotasVendidas;
   const percentualVendido = (quotasVendidas / totalQuotas) * 100;
+  const navigate = useNavigate()
 
   return (
     <section id="cotas" className="py-20 bg-white">
@@ -102,10 +104,14 @@ const QuotasAvailable = () => {
                   <div className="text-lg text-gray-300">disponíveis nesta rodada</div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="bg-club8-turquoise hover:bg-club8-turquoise-secondary text-club8-dark font-bold px-8 py-4 text-lg">
+                  <Button onClick={() => {
+                    document
+                        .getElementById('seja-socio')
+                        ?.scrollIntoView({ behavior: 'smooth' })
+                  }} size="lg" className="bg-club8-turquoise hover:bg-club8-turquoise-secondary text-club8-dark font-bold px-8 py-4 text-lg">
                     Garantir Minha Cota
                   </Button>
-                  <Button size="lg" variant="outline" className="border-club8-turquoise text-club8-dark hover:bg-club8-turquoise hover:text-club8-dark px-8 py-4 text-lg">
+                  <Button onClick={() => navigate('/fila-de-espera')} size="lg" variant="outline" className="border-club8-turquoise text-club8-dark hover:bg-club8-turquoise hover:text-club8-dark px-8 py-4 text-lg">
                     Lista de Espera
                   </Button>
                 </div>

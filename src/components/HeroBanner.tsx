@@ -57,10 +57,18 @@ const HeroBanner = () => {
               {slides[currentSlide].description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-club8-turquoise hover:bg-club8-turquoise-secondary text-club8-dark font-bold px-8 py-4 text-lg">
+              <Button onClick={() => {
+                document
+                    .getElementById('seja-socio')
+                    ?.scrollIntoView({ behavior: 'smooth' })
+              }} size="lg" className="bg-club8-turquoise hover:bg-club8-turquoise-secondary text-club8-dark font-bold px-8 py-4 text-lg">
                 Quero Investir Agora
               </Button>
-              <Button size="lg" variant="outline" className="border-club8-turquoise text-club8-dark  hover:bg-club8-dar hover:text-club8-dark px-8 py-4 text-lg">
+              <Button onClick={() => {
+                document
+                    .getElementById('simulador')
+                    ?.scrollIntoView({ behavior: 'smooth' })
+              }} size="lg" variant="outline" className="border-club8-turquoise text-club8-dark  hover:bg-club8-dar hover:text-club8-dark px-8 py-4 text-lg">
                 Fazer Simulação
               </Button>
             </div>

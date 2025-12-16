@@ -103,7 +103,11 @@ const InvestmentPlans = () => {
                   </div>)}
               </div>
 
-              <Button className={`w-full py-4 text-lg font-bold ${plan.popular ? 'bg-club8-turquoise hover:bg-club8-turquoise-secondary text-club8-dark' : 'bg-club8-dark hover:bg-gray-800 text-white'}`} size="lg">
+              <Button onClick={() => {
+                document
+                    .getElementById('seja-socio')
+                    ?.scrollIntoView({ behavior: 'smooth' })
+              }} className={`w-full py-4 text-lg font-bold ${plan.popular ? 'bg-club8-turquoise hover:bg-club8-turquoise-secondary text-club8-dark' : 'bg-club8-dark hover:bg-gray-800 text-white'}`} size="lg">
                 Quero Investir Agora
               </Button>
             </div>)}

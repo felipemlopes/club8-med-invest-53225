@@ -54,10 +54,18 @@ const HighlightSection = () => {
             Faça uma simulação gratuita ou comece a investir agora mesmo
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-club8-dark hover:bg-gray-800 text-white px-8 py-4 text-lg">
+            <Button onClick={() => {
+              document
+                  .getElementById('simulador')
+                  ?.scrollIntoView({ behavior: 'smooth' })
+            }} size="lg" className="bg-club8-dark hover:bg-gray-800 text-white px-8 py-4 text-lg">
               Fazer Simulação
             </Button>
-            <Button size="lg" variant="outline" className="border-club8-dark text-club8-dark hover:bg-club8-dark hover:text-white px-8 py-4 text-lg">
+            <Button onClick={() => {
+              document
+                  .getElementById('seja-socio')
+                  ?.scrollIntoView({ behavior: 'smooth' })
+            }} size="lg" variant="outline" className="border-club8-dark text-club8-dark hover:bg-club8-dark hover:text-white px-8 py-4 text-lg">
               Quero Investir Agora
             </Button>
           </div>

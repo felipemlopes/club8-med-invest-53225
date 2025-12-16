@@ -34,10 +34,10 @@ const Footer = () => {
             <h3 className="text-xl font-bold text-club8-turquoise mb-6">Navegação</h3>
             <ul className="space-y-4">
               <li><a href="/quem-somos" className="text-gray-300 hover:text-club8-turquoise transition-colors">Quem Somos</a></li>
-              <li><a href="#seja-socio" className="text-gray-300 hover:text-club8-turquoise transition-colors">Seja Sócio</a></li>
-              <li><a href="#planos" className="text-gray-300 hover:text-club8-turquoise transition-colors">Planos</a></li>
-              <li><a href="#simulador" className="text-gray-300 hover:text-club8-turquoise transition-colors">Simulador</a></li>
-              <li><a href="#cotas" className="text-gray-300 hover:text-club8-turquoise transition-colors">Cotas</a></li>
+              <li><a href="/#seja-socio" className="text-gray-300 hover:text-club8-turquoise transition-colors">Seja Sócio</a></li>
+              <li><a href="/#planos" className="text-gray-300 hover:text-club8-turquoise transition-colors">Planos</a></li>
+              <li><a href="/#simulador" className="text-gray-300 hover:text-club8-turquoise transition-colors">Simulador</a></li>
+              <li><a href="/#cotas" className="text-gray-300 hover:text-club8-turquoise transition-colors">Cotas</a></li>
               <li><a href="/garantias" className="text-gray-300 hover:text-club8-turquoise transition-colors">Garantias</a></li>
             </ul>
           </div>
@@ -71,7 +71,7 @@ const Footer = () => {
           </div>
 
           {/* Contato */}
-          <div>
+          <div id={"contato"}>
             <h3 className="text-xl font-bold text-club8-turquoise mb-6">Contato</h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
