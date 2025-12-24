@@ -163,11 +163,14 @@ const RegisterSection = () => {
     <div className="min-h-screen bg-club8-dark flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-lg w-full space-y-8">
         <div className="text-center">
-          <img 
-            src="/lovable-uploads/ce9a3483-706c-4620-a853-024a9c09c5b8.png" 
-            alt="Club8 Logo" 
-            className="mx-auto h-20 w-auto" 
-          />
+          <a href="/">
+            <img
+                src="/lovable-uploads/ce9a3483-706c-4620-a853-024a9c09c5b8.png"
+                alt="Club8 Logo"
+                className="mx-auto h-20 w-auto"
+            />
+          </a>
+
           <h2 className="mt-6 text-3xl font-bold text-white">
             <UserPlus className="inline-block w-8 h-8 mr-3 text-club8-turquoise" />
             Crie sua conta
