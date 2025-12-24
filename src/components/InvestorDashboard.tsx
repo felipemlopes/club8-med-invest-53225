@@ -24,10 +24,11 @@ const InvestorDashboard = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  const { data: dashboardData, isLoading, error } = useQuery<DashboardData | null>({
+  const { data: dashboardData, isLoading, error, refetch } = useQuery<DashboardData | null>({
     queryKey: ['/api/dashboard'],
     queryFn: () => investmentApi.getDashboard(),
     staleTime: 30000,
+    retry: 2,
   });
 
   const handleLogout = () => {
@@ -59,6 +60,19 @@ const InvestorDashboard = () => {
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-club8-turquoise mx-auto mb-4" />
           <p className="text-gray-600">Carregando seus dados...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 mb-4">Erro ao carregar dados do dashboard.</p>
+          <Button onClick={() => refetch()} variant="outline">
+            Tentar novamente
+          </Button>
         </div>
       </div>
     );
