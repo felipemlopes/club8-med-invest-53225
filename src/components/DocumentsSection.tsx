@@ -2,18 +2,24 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { FileText, Download } from 'lucide-react';
+import investmentApi, {Document} from "@/lib/investmentApi.ts";
+import {useQuery} from "@tanstack/react-query";
 
 const DocumentsSection = () => {
-  const documents = [
-    { name: 'Contrato de Investimento', type: 'Contrato', date: '15/01/2024' },
-    { name: 'Comprovante de Pagamento - Jan/24', type: 'Comprovante', date: '15/01/2024' },
-    { name: 'Comprovante de Recebimento - Abr/24', type: 'Recebimento', date: '15/04/2024' }
-  ];
 
-  const downloadDocument = (docName: string) => {
-    // Simular download
-    console.log(`Baixando documento: ${docName}`);
+    const { data: documents = [], isLoading, error, refetch } = useQuery<Document[]>({
+        queryKey: ['/api/documents'],
+        queryFn: () => investmentApi.getDocuments(),
+        staleTime: 30000,
+        retry: 2,
+    });
+
+  const downloadDocument = (docUrl: string) => {
+    console.log(`Baixando documento: ${docUrl}`);
+      window.open(docUrl, '_blank');
   };
+
+
 
   return (
     <Card className="p-6">
@@ -32,7 +38,7 @@ const DocumentsSection = () => {
             <Button 
               variant="outline" 
               size="sm"
-              onClick={() => downloadDocument(doc.name)}
+              onClick={() => downloadDocument(doc.url)}
             >
               <Download className="w-4 h-4" />
             </Button>

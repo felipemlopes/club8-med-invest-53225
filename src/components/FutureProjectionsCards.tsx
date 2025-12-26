@@ -2,18 +2,39 @@
 import { Card } from '@/components/ui/card';
 import { TrendingUp, Calendar, Target, Zap } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
+import {useQuery} from "@tanstack/react-query";
+import investmentApi, {DashboardData, Future} from "@/lib/investmentApi.ts";
 
 const FutureProjectionsCards = () => {
   const { user } = useAuth();
-  
-  const isPremium = user?.plano === 'platinum';
-  const investimentoInicial = 150000;
-  const rentabilidadeMensal = 2.0; // Sempre 2% para o dashboard interno
+
+  const { data: future, isLoading, error, refetch } = useQuery<Future>({
+    queryKey: ['/api/future'],
+    queryFn: () => investmentApi.getFuture(),
+    staleTime: 30000,
+    retry: 2,
+  });
+
+  const {
+    total_invested = 0,
+    monthly_return_rate = 0,
+    indications = [],
+  } = future ?? {};
+
+
+  //const isPremium = user?.plano === 'platinum';
+  const investimentoInicial = total_invested;
+  const rentabilidadeMensal = monthly_return_rate;
+  //const rentabilidadeMensal = future?.monthly_return_rate || 2; // Sempre 2% para o dashboard interno
   const parcelaMensal = investimentoInicial * (rentabilidadeMensal / 100);
   
   // Bonificações - investimentos em múltiplos de R$ 50.000
-  const indicacoesValores = [50000, 100000, 50000]; // 3 indicações
-  const bonusTotal = indicacoesValores.reduce((total, valor) => total + (valor * 0.01), 0);
+  const indicacoesValores = indications; // 3 indicações
+  //const bonusTotal = indicacoesValores.reduce((total, valor) => total + (valor * 0.01), 0);
+  const bonusTotal = indications.reduce(
+      (sum, value) => sum + value,
+      0
+  );
   
   // Ganhos operacionais do ano (12 meses)
   const ganhosOperacionaisAno = parcelaMensal * 12;

@@ -1,8 +1,30 @@
 
 import { Button } from '@/components/ui/button';
 import { Check, Star } from 'lucide-react';
+import {useQuery} from "@tanstack/react-query";
+import investmentApi, {Document, Plan} from "@/lib/investmentApi.ts";
 const InvestmentPlans = () => {
-  const plans = [{
+  /*const {
+    data: plans = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['plans'],
+    queryFn: () => investmentApi.getPlans(),
+    staleTime: 5 * 60 * 1000, // 5 minutos
+    retry: 2,
+  });*/
+
+  const { data: plans = [], isLoading, error, refetch } = useQuery<Plan[]>({
+    queryKey: ['/api/plans'],
+    queryFn: () => investmentApi.getPlans(),
+    staleTime: 30000,
+    retry: 2,
+  });
+
+  //const plans = response?.data || [];
+
+  /*const plans = [{
     name: "Club8 Gold",
     cotas: "1 Cota",
     investmentValue: "R$ 50.000",
@@ -24,7 +46,7 @@ const InvestmentPlans = () => {
     yearlyProfit: "R$ 24.000+",
     features: ["Rentabilidade de 2,0% ao mês", "Carência de 1 ano", "Liquidez trimestral", "Programa de indicações premium", "Relatórios detalhados", "Atendimento prioritário"],
     popular: true
-  }];
+  }];*/
   return <section id="planos" className="py-20 bg-club8-dark">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
@@ -50,11 +72,11 @@ const InvestmentPlans = () => {
                   {plan.name}
                 </h3>
                 <div className="text-6xl font-bold club8-text-gradient mb-2">
-                  {plan.monthlyReturn}
+                  {plan.monthly_return}
                 </div>
                 <div className="text-lg text-gray-600 mb-4">ao mês</div>
                 <div className="text-2xl font-bold text-club8-dark">
-                  {plan.annualReturn} ao ano
+                  {plan.annual_return} ao ano
                 </div>
               </div>
 
@@ -68,7 +90,7 @@ const InvestmentPlans = () => {
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-club8-dark">
-                      {plan.investmentValue}
+                      {plan.min_investment}
                     </div>
                     <div className="text-sm text-gray-600">Investimento</div>
                   </div>
@@ -97,7 +119,7 @@ const InvestmentPlans = () => {
               </div>
 
               <div className="space-y-4 mb-8">
-                {plan.features.map((feature, featureIndex) => <div key={featureIndex} className="flex items-center gap-3">
+                {plan.benefits.map((feature, featureIndex) => <div key={featureIndex} className="flex items-center gap-3">
                     <Check className="w-5 h-5 text-club8-turquoise flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
                   </div>)}

@@ -3,10 +3,15 @@ import api from './api';
 export interface Plan {
   id: number;
   name: string;
-  monthly_rate: number;
+  cotas: string;
+  annual_return: number;
+  monthly_return: number;
   min_investment: number;
-  liquidity: string;
-  description: string;
+  carencia: string;
+  liquidez: string;
+  yearlyProfit: number;
+  popular: boolean;
+  benefits: string[];
 }
 
 export interface DashboardData {
@@ -87,6 +92,42 @@ export interface Notification {
   created_at: string;
 }
 
+export interface Profile {
+  name: string;
+  email: string;
+  crm?: string;
+  specialty?: string;
+}
+
+export interface Document {
+  id: string;
+  name: string;
+  type: string;
+  date: string;
+  url: string;
+}
+
+export interface Future {
+  total_invested: number;
+  monthly_return_rate: number;
+  indications: number[];
+}
+
+export interface PerformanceMonth {
+  label: string;
+  isProjection: boolean;
+  club8: number;
+  cdb?: number;
+  lca?: number;
+  poupanca?: number;
+  tesouroDireto?: number;
+}
+
+export interface PerformanceResponse {
+  initial_investment: number;
+  months: PerformanceMonth[];
+}
+
 export const investmentApi = {
   async getPlans() {
     const response = await api.get<{ data: Plan[] }>('/plans');
@@ -96,6 +137,16 @@ export const investmentApi = {
   async getDashboard() {
     const response = await api.get<{ data: DashboardData }>('/dashboard');
     return response.data?.data || null;
+  },
+
+  async getFuture() {
+    const response = await api.get<{ data: Future }>('/future');
+    return response.data?.data || null;
+  },
+
+  async getGraph(): Promise<PerformanceResponse> {
+    const response = await api.get<{ data: PerformanceResponse }>('/graph');
+    return response.data.data;
   },
 
   async getInvestments() {
@@ -145,6 +196,17 @@ export const investmentApi = {
     const response = await api.patch(`/notifications/${notificationId}/read`);
     return response;
   },
+
+  async updateProfile(data: Profile) {
+    const response = await api.post<{ data: Profile }>('/profile', data);
+    return response.data;
+  },
+
+  async getDocuments() {
+    const response = await api.get<{ data: Document[] }>('/documents');
+    return response.data?.data || [];
+  },
+
 };
 
 export default investmentApi;

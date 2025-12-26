@@ -36,9 +36,11 @@ const InvestorDashboard = () => {
     navigate('/');
   };
 
+
+  console.log(dashboardData)
   const totalInvestido = dashboardData?.total_invested || 0;
   const saldoAtual = dashboardData?.current_balance || 0;
-  const rentabilidadeMensal = dashboardData?.monthly_return_rate || 2.0;
+  const rentabilidadeMensal = dashboardData?.monthly_return_rate || 0;
   const totalTransferido = dashboardData?.total_transferred || 0;
   const dataEntrada = dashboardData?.entry_date || '-';
   const proximaTransferencia = dashboardData?.next_transfer_date || '-';
@@ -173,7 +175,7 @@ const InvestorDashboard = () => {
                     <div key={index} className="flex items-center justify-between gap-2 p-4 bg-gray-50 rounded-lg" data-testid={`row-monthly-return-${index}`}>
                       <span className="font-medium text-club8-dark">{item.mes}</span>
                       <div className="text-right">
-                        <p className="font-bold text-green-600">R$ {item.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</p>
+                        <p className="font-bold text-green-600">R$ {item.valor }</p>
                         <p className="text-sm text-gray-600">{item.percentual}%</p>
                       </div>
                     </div>

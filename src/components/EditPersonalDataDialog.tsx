@@ -7,27 +7,43 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Edit } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
+import investmentApi from "@/lib/investmentApi.ts";
 
 const EditPersonalDataDialog = () => {
   const { user, updateUser } = useAuth();
   const { toast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
-    nome: user?.nome || '',
+    name: user?.name || '',
     email: user?.email || '',
     crm: user?.crm || '',
-    especialidade: user?.especialidade || ''
+    specialty: user?.specialty || ''
   });
 
-  const handleSave = () => {
+  const handleSave = async () => {
     // Simular atualização dos dados
     if (updateUser) {
       updateUser(formData);
-      toast({
-        title: "Dados atualizados",
-        description: "Suas informações foram atualizadas com sucesso.",
-      });
-      setIsOpen(false);
+
+      try {
+        const response = await investmentApi.updateProfile(formData);
+
+        // atualiza o user global (context)
+        //updateUser(response.user);
+
+        toast({
+          title: "Dados atualizados",
+          description: "Suas informações foram atualizadas com sucesso.",
+        });
+
+        setIsOpen(false);
+      } catch (error) {
+        toast({
+          title: 'Erro ao atualizar',
+          description: 'Não foi possível atualizar seus dados.',
+          variant: 'destructive',
+        });
+      }
     }
   };
 
@@ -48,8 +64,8 @@ const EditPersonalDataDialog = () => {
             <Label htmlFor="nome">Nome</Label>
             <Input
               id="nome"
-              value={formData.nome}
-              onChange={(e) => setFormData({...formData, nome: e.target.value})}
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
             />
           </div>
           <div>
@@ -71,13 +87,13 @@ const EditPersonalDataDialog = () => {
               />
             </div>
           )}
-          {user?.especialidade && (
+          {user?.specialty && (
             <div>
               <Label htmlFor="especialidade">Especialidade</Label>
               <Input
                 id="especialidade"
-                value={formData.especialidade}
-                onChange={(e) => setFormData({...formData, especialidade: e.target.value})}
+                value={formData.specialty}
+                onChange={(e) => setFormData({...formData, specialty: e.target.value})}
               />
             </div>
           )}

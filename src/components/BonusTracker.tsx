@@ -12,9 +12,11 @@ const BonusTracker = () => {
   });
 
   const referredUsers = referralData?.referred_users || [];
-  const activeUsers = referredUsers.filter(u => u.status === 'active');
+  //const activeUsers = referredUsers.filter(u => u.status === 'active');
+  const activeUsers = referralData?.referred_users || [];
+  //const pendingUsers = referredUsers.filter(u => u.status === 'pending');
   const pendingUsers = referredUsers.filter(u => u.status === 'pending');
-  
+
   const totalBonusActive = activeUsers.reduce((total, user) => total + user.bonus_earned, 0);
   const totalInvestedByReferred = activeUsers.reduce((total, user) => total + user.invested_amount, 0);
 

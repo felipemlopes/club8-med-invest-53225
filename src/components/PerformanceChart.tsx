@@ -5,13 +5,28 @@ import { Button } from '@/components/ui/button';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { TrendingUp } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
+import {useQuery} from "@tanstack/react-query";
+import investmentApi, {DashboardData, PerformanceResponse} from "@/lib/investmentApi.ts";
 
 const PerformanceChart = () => {
   const { user } = useAuth();
   const [showComparison, setShowComparison] = useState(false);
 
+  const { data: graph, isLoading, error, refetch } = useQuery<PerformanceResponse>({
+    queryKey: ['/api/graph'],
+    queryFn: () => investmentApi.getGraph(),
+    staleTime: 30000,
+    retry: 2,
+  });
+
+
+  const {
+    initial_investment = 0,
+    months = [],
+  } = graph ?? {};
+
   // Valor base do investimento
-  const investimentoInicial = 150000;
+  const investimentoInicial = initial_investment;
   
   // Rentabilidades mensais dos diferentes investimentos - sempre 2% para Club8 no dashboard interno
   const club8Mensal = 2.0;
@@ -27,7 +42,8 @@ const PerformanceChart = () => {
   ];
 
   // Calculando valores acumulados
-  const performanceData = meses.map((mes, index) => {
+  const performanceData = months;
+  /*const performanceData = meses.map((mes, index) => {
     const isProjection = index >= 6;
     const monthCount = index + 1;
     
@@ -40,7 +56,7 @@ const PerformanceChart = () => {
       tesouroDireto: investimentoInicial + (investimentoInicial * tesouroDiretoMensal * monthCount / 100),
       isProjection
     };
-  });
+  });*/
 
   const formatCurrency = (value: number) => {
     return `R$ ${value.toLocaleString('pt-BR')}`;
