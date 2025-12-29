@@ -40,6 +40,7 @@ interface RegisterData {
   specialty?: string;
   phone?: string;
   plan_id?: number;
+  referral_code?: string;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

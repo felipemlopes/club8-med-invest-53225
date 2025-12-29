@@ -17,6 +17,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import LGPD from "./pages/LGPD";
 import NotFound from "./pages/NotFound";
+import {ReferralTracker} from "@/components/ReferralTracker.tsx";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ReferralTracker />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />

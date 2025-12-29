@@ -1,5 +1,9 @@
 import api from './api';
 
+export interface Feature {
+  name: string;
+}
+
 export interface Plan {
   id: number;
   name: string;
@@ -11,7 +15,7 @@ export interface Plan {
   liquidez: string;
   yearlyProfit: number;
   popular: boolean;
-  benefits: string[];
+  benefits: Feature[];
 }
 
 export interface DashboardData {

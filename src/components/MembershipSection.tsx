@@ -12,14 +12,16 @@ const MembershipSection = () => {
   const { toast } = useToast();
   const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState({
-    nome: '',
+    name: '',
     crm: '',
-    estado: '',
-    especialidade: '',
-    cidade: '',
+    uf: '',
+    specialty: '',
+    city: '',
     email: '',
-    telefone: '',
-    plano: ''
+    phone: '',
+    plan_id: '',
+    password: '',
+    password_confirmation: ''
   });
 
   const estados = [
@@ -34,10 +36,12 @@ const MembershipSection = () => {
     'Anestesiologia', 'Cirurgia Geral', 'Clínica Médica', 'Outra'
   ];
 
+  const referralCode = localStorage.getItem("referral_code");
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.nome || !formData.email) {
+    if (!formData.name || !formData.email) {
       toast({
         title: "Erro no cadastro",
         description: "Por favor, preencha pelo menos nome e email.",
@@ -46,9 +50,23 @@ const MembershipSection = () => {
       return;
     }
 
-    const success = await register(formData);
-    
-    if (success) {
+    //const success = await register(formData);
+
+    const result = await register({
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      password_confirmation: formData.password_confirmation,
+      crm: formData.crm || undefined,
+      uf: formData.uf || undefined,
+      city: formData.city || undefined,
+      specialty: formData.specialty || undefined,
+      phone: formData.phone || undefined,
+      plan_id: formData.plan_id ? parseInt(formData.plan_id) : undefined,
+      referral_code: referralCode,
+    });
+
+    if (result.success) {
       setShowSuccess(true);
       toast({
         title: "Cadastro realizado com sucesso!",
@@ -118,8 +136,8 @@ const MembershipSection = () => {
                     </label>
                     <Input 
                       placeholder="Digite seu nome completo"
-                      value={formData.nome}
-                      onChange={(e) => setFormData({...formData, nome: e.target.value})}
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
                       className="h-12"
                       required
                     />
@@ -141,7 +159,7 @@ const MembershipSection = () => {
                       <label className="block text-sm font-semibold text-club8-dark mb-2">
                         Estado
                       </label>
-                      <Select value={formData.estado} onValueChange={(value) => setFormData({...formData, estado: value})}>
+                      <Select value={formData.uf} onValueChange={(value) => setFormData({...formData, uf: value})}>
                         <SelectTrigger className="h-12">
                           <SelectValue placeholder="UF" />
                         </SelectTrigger>
@@ -158,7 +176,7 @@ const MembershipSection = () => {
                     <label className="block text-sm font-semibold text-club8-dark mb-2">
                       Especialidade
                     </label>
-                    <Select value={formData.especialidade} onValueChange={(value) => setFormData({...formData, especialidade: value})}>
+                    <Select value={formData.specialty} onValueChange={(value) => setFormData({...formData, specialty: value})}>
                       <SelectTrigger className="h-12">
                         <SelectValue placeholder="Selecione sua especialidade" />
                       </SelectTrigger>
@@ -176,8 +194,8 @@ const MembershipSection = () => {
                     </label>
                     <Input 
                       placeholder="Digite sua cidade"
-                      value={formData.cidade}
-                      onChange={(e) => setFormData({...formData, cidade: e.target.value})}
+                      value={formData.city}
+                      onChange={(e) => setFormData({...formData, city: e.target.value})}
                       className="h-12"
                     />
                   </div>
@@ -202,8 +220,8 @@ const MembershipSection = () => {
                       </label>
                       <Input 
                         placeholder="(11) 99999-9999"
-                        value={formData.telefone}
-                        onChange={(e) => setFormData({...formData, telefone: e.target.value})}
+                        value={formData.phone}
+                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
                         className="h-12"
                       />
                     </div>
@@ -213,7 +231,7 @@ const MembershipSection = () => {
                     <label className="block text-sm font-semibold text-club8-dark mb-2">
                       Plano de Interesse
                     </label>
-                    <Select value={formData.plano} onValueChange={(value) => setFormData({...formData, plano: value})}>
+                    <Select value={formData.plan_id} onValueChange={(value) => setFormData({...formData, plan_id: value})}>
                       <SelectTrigger className="h-12">
                         <SelectValue placeholder="Selecione um plano" />
                       </SelectTrigger>

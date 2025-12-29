@@ -119,10 +119,12 @@ const InvestmentPlans = () => {
               </div>
 
               <div className="space-y-4 mb-8">
-                {plan.benefits.map((feature, featureIndex) => <div key={featureIndex} className="flex items-center gap-3">
+                {plan.benefits.map((feature, featureIndex) =>
+                    <div key={featureIndex} className="flex items-center gap-3">
                     <Check className="w-5 h-5 text-club8-turquoise flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
-                  </div>)}
+                    <span className="text-gray-700">{feature.name}</span>
+                  </div>
+                )}
               </div>
 
               <Button onClick={() => {

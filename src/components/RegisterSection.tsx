@@ -130,6 +130,8 @@ const RegisterSection = () => {
       return;
     }
 
+    const referralCode = localStorage.getItem("referral_code");
+
     const result = await register({
       name: formData.name,
       email: formData.email,
@@ -141,6 +143,7 @@ const RegisterSection = () => {
       specialty: formData.specialty || undefined,
       phone: formData.phone || undefined,
       plan_id: formData.plan_id ? parseInt(formData.plan_id) : undefined,
+      referral_code: referralCode,
     });
 
     if (result.success) {
