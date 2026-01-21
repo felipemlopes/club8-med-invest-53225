@@ -1,15 +1,12 @@
 module.exports = {
     apps: [
         {
-            name: "club8s-ssr",
-            // O script deve ser o ponto de entrada do seu servidor Node
-            script: "./server/index.js",
-            instances: "max", // Escala para todos os núcleos da CPU (modo cluster)
-            exec_mode: "cluster",
-            watch: false, // Em produção, deixe false para evitar restarts infinitos
+            name: "club8s-frontend",
+            script: "npm",
+            // O "-- --port 3000" passa o argumento para o script interno do vite
+            args: "run preview -- --port 3000 --host",
             env: {
-                NODE_ENV: "production",
-                PORT: 3000
+                NODE_ENV: "production"
             }
         }
     ]
