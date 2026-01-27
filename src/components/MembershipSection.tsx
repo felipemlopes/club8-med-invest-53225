@@ -108,7 +108,7 @@ const MembershipSection = () => {
   }
 
   return (
-    <section id="seja-socio" className="py-20 bg-club8-dark">
+    <section id="seja-socio" className="py-20 bg-club8-dark anchor-offset">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">

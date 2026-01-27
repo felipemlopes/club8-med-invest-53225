@@ -58,14 +58,14 @@ const HighlightSection = () => {
               document
                   .getElementById('simulador')
                   ?.scrollIntoView({ behavior: 'smooth' })
-            }} size="lg" className="bg-club8-dark hover:bg-gray-800 text-white px-8 py-4 text-lg">
+            }} size="lg" className="bg-club8-dark hover:bg-club8-white text-white hover:text-black px-8 py-4 text-lg">
               Fazer Simulação
             </Button>
             <Button onClick={() => {
               document
                   .getElementById('seja-socio')
                   ?.scrollIntoView({ behavior: 'smooth' })
-            }} size="lg" variant="outline" className="border-club8-dark text-club8-dark hover:bg-club8-dark hover:text-white px-8 py-4 text-lg">
+            }} size="lg" variant="outline" className="border-club8-dark text-club8-dark hover:bg-club8-turquoise hover:text-black px-8 py-4 text-lg">
               Quero Investir Agora
             </Button>
           </div>

@@ -70,6 +70,7 @@ const Header = () => {
               onClick={handleAuthAction}
               variant="outline" 
               className="border-club8-turquoise text-club8-turquoise hover:bg-club8-turquoise hover:text-club8-dark"
+              style={{color:'#000'}}
             >
               {isAuthenticated ? (
                 window.location.pathname === '/dashboard' ? 'Sair' : 'Dashboard'
@@ -103,7 +104,7 @@ const Header = () => {
               <Button 
                 onClick={handleAuthAction}
                 variant="outline" 
-                className="border-club8-turquoise text-club8-turquoise hover:bg-club8-turquoise hover:text-club8-dark w-fit"
+                className="border-club8-turquoise hover:bg-club8-turquoise text-club8-dark w-fit"
               >
                 {isAuthenticated ? (
                   window.location.pathname === '/dashboard' ? 'Sair' : 'Dashboard'

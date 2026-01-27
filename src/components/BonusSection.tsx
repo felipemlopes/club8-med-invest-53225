@@ -25,7 +25,7 @@ const BonusSection = () => {
                 Bonificação por Renovação
               </h3>
               <p className="text-gray-600">
-                Renove por mais 1 ano ou faça upgrade e ganhe 1 mês extra de rendimento
+                Renove por mais 1 ano e ganhe 1 mês extra de rendimento no final do período
               </p>
             </div>
 
@@ -104,10 +104,10 @@ const BonusSection = () => {
           <div className="text-center mb-8">
             <Calculator className="w-16 h-16 mx-auto mb-4" />
             <h3 className="text-3xl font-bold mb-4">
-              Potencial de Ganhos com Indicações
+              Potencial de Ganhos com as Bonificações
             </h3>
             <p className="text-xl opacity-90">
-              Veja o poder do novo sistema: 1% sobre cada valor investido por suas indicações
+              Veja o seu poder de ganho com Club8: 1% sobre cada valor investido por suas indicações
             </p>
           </div>
 

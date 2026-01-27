@@ -60,7 +60,7 @@ const WaitingList = () => {
           <div className="text-center">
             <Clock className="w-20 h-20 text-club8-turquoise mx-auto mb-6" />
             <h1 className="text-5xl lg:text-6xl font-bold mb-6">
-              Fila de <span className="club8-text-gradient">Espera</span>
+              Lista de <span className="club8-text-gradient">Espera</span>
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Seja um dos primeiros a conhecer as próximas oportunidades de investimento 
@@ -83,7 +83,7 @@ const WaitingList = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 mb-16">
-            <Card className="border-2 border-club8-turquoise/20">
+            <Card className="border-2 border-club8-turquoise">
               <CardHeader className="text-center">
                 <Star className="w-12 h-12 text-club8-turquoise mx-auto mb-4" />
                 <CardTitle>Club8 Gold</CardTitle>
@@ -330,9 +330,9 @@ const WaitingList = () => {
 
                   <Button 
                     type="submit" 
-                    className="w-full bg-club8-turquoise hover:bg-club8-turquoise-secondary text-white font-semibold py-3"
+                    className="w-full hover:border-club8-turquoise bg-club8-turquoise hover:bg-club8-white text-black font-semibold py-3"
                   >
-                    Entrar na Fila de Espera
+                    Entrar na Lista de Espera
                   </Button>
                 </form>
               </CardContent>

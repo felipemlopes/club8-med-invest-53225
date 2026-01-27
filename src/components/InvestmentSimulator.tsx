@@ -38,7 +38,7 @@ const InvestmentSimulator = () => {
   const cotasOptions = Array.from({ length: 10 }, (_, i) => i + 1);
 
   return (
-    <section id="simulador" className="py-20 bg-gray-50">
+    <section id="simulador" className="py-20 bg-gray-50 anchor-offset">
       <div className="container mx-auto px-6">
         <div className="text-center text-club8-turquoise-secondary ">
           <h2 className="text-4xl lg:text-5xl font-bold text-club8-dark mb-6">
@@ -114,10 +114,15 @@ const InvestmentSimulator = () => {
                   Plano: {parseInt(cotas) === 1 ? 'Club8 Gold (1,8% a.m.)' : 'Club8 Platinum (2,0% a.m.)'}
                 </div>
               </div>
+
+              <p className="mt-3 text-center italic">
+                Simulações de valores sem considerar o Programa de Bonificações
+              </p>
+
             </div>
 
             <div className="text-center mt-8">
-              <Button onClick={() => setShowComparison(!showComparison)} variant="outline" className="border-club8-turquoise text-club8-turquoise hover:bg-club8-turquoise hover:text-club8-dark">
+              <Button onClick={() => setShowComparison(!showComparison)} variant="outline" className="border-club8-turquoise bg-club8-turquoise text-black hover:bg-club8-white hover:text-club8-dark">
                 <TrendingUp className="w-5 h-5 mr-2" />
                 {showComparison ? 'Ocultar' : 'Ver'} Comparativo com Mercado
               </Button>
@@ -183,6 +188,10 @@ const InvestmentSimulator = () => {
                   a mais que o melhor investimento tradicional!
                 </p>
               </div>
+
+              <p className="mt-3 text-center italic">
+                Comparativo usando valores aproximados de apliações tradicionais do mercado
+              </p>
             </div>
           )}
         </div>

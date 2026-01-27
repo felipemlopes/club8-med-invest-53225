@@ -12,7 +12,7 @@ const QuotasAvailable = () => {
   const navigate = useNavigate()
 
   return (
-    <section id="cotas" className="py-20 bg-white">
+    <section id="cotas" className="py-20 bg-white anchor-offset">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-club8-dark mb-6">
@@ -80,9 +80,9 @@ const QuotasAvailable = () => {
               </div>
               <div className="text-center">
                 <Clock className="w-8 h-8 text-club8-turquoise mx-auto mb-3" />
-                <h4 className="text-lg font-semibold mb-2">Tempo Limitado</h4>
+                <h4 className="text-lg font-semibold mb-2">Cotas Limitadas</h4>
                 <p className="text-gray-300 text-sm">
-                  Quando esgotadas, próxima abertura apenas em 6 meses
+                  Garanta a sua antes que esgote. A próxima abertura de cotas seguirá a Lista de Espera
                 </p>
               </div>
               <div className="text-center">
@@ -108,7 +108,7 @@ const QuotasAvailable = () => {
                     document
                         .getElementById('seja-socio')
                         ?.scrollIntoView({ behavior: 'smooth' })
-                  }} size="lg" className="bg-club8-turquoise hover:bg-club8-turquoise-secondary text-club8-dark font-bold px-8 py-4 text-lg">
+                  }} size="lg" className="bg-club8-turquoise hover:bg-club8-white text-club8-dark font-bold px-8 py-4 text-lg">
                     Garantir Minha Cota
                   </Button>
                   <Button onClick={() => navigate('/fila-de-espera')} size="lg" variant="outline" className="border-club8-turquoise text-club8-dark hover:bg-club8-turquoise hover:text-club8-dark px-8 py-4 text-lg">

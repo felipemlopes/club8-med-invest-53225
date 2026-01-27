@@ -125,3 +125,7 @@
     transform: scale(1);
   }
 }
+
+.anchor-offset {
+  scroll-margin-top: 96px; /* altura do header */
+}

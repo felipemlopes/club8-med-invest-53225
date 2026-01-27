@@ -18,41 +18,57 @@ const SecurityGuarantees = () => {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 border border-club8-turquoise border-opacity-30">
-            <div className="text-center mb-6">
-              <Building className="w-16 h-16 text-club8-turquoise mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-3">Hipotecárias</h3>
-              <p className="text-gray-300">
-                Garantias lastreadas em imóveis e propriedades, 
-                oferecendo segurança real e tangível para seu investimento 
-                através de ativos imobiliários sólidos
-              </p>
+          <a href="/garantias"
+             className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl border border-club8-turquoise border-opacity-30
+             transition cursor-pointer"
+          >
+            <div className="rounded-2xl p-8">
+              <div className="text-center mb-6">
+                <Building className="w-16 h-16 text-club8-turquoise mx-auto mb-4" />
+                <h3 className="text-2xl font-bold mb-3">Hipotecárias</h3>
+                <p className="text-gray-300">
+                  Garantias lastreadas em imóveis e propriedades,
+                  oferecendo segurança real e tangível para seu investimento
+                  através de ativos imobiliários sólidos
+                </p>
+              </div>
             </div>
-          </div>
+          </a>
 
-          <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 border border-club8-turquoise border-opacity-30">
-            <div className="text-center mb-6">
-              <FileCheck className="w-16 h-16 text-club8-turquoise mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-3">Alienação Fiduciária</h3>
-              <p className="text-gray-300">
-                Garantias com transferência de propriedade de bens móveis e imóveis, 
-                assegurando o cumprimento das obrigações e proteção total 
-                do capital investido
-              </p>
+          <a href="/garantias"
+             className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl border border-club8-turquoise border-opacity-30
+             transition cursor-pointer"
+          >
+            <div className="rounded-2xl p-8">
+              <div className="text-center mb-6">
+                <FileCheck className="w-16 h-16 text-club8-turquoise mx-auto mb-4" />
+                <h3 className="text-2xl font-bold mb-3">Alienação Fiduciária</h3>
+                <p className="text-gray-300">
+                  Garantias com transferência de propriedade de bens móveis e imóveis,
+                  assegurando o cumprimento das obrigações e proteção total
+                  do capital investido
+                </p>
+              </div>
             </div>
-          </div>
+          </a>
 
-          <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 border border-club8-turquoise border-opacity-30">
-            <div className="text-center mb-6">
-              <Lock className="w-16 h-16 text-club8-turquoise mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-3">Patrimônio Sólido</h3>
-              <p className="text-gray-300">
-                Mais de R$ 1 bilhão em patrimônio como garantia adicional, 
-                assegurando a solidez e confiabilidade dos investimentos 
-                com lastro patrimonial robusto
-              </p>
+          <a href="/garantias"
+             className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl border border-club8-turquoise border-opacity-30
+             transition cursor-pointer"
+          >
+            <div className="rounded-2xl p-8">
+              <div className="text-center mb-6">
+                <Lock className="w-16 h-16 text-club8-turquoise mx-auto mb-4" />
+                <h3 className="text-2xl font-bold mb-3">Patrimônio Sólido</h3>
+                <p className="text-gray-300">
+                  Mais de R$ 1 bilhão em patrimônio como garantia adicional,
+                  assegurando a solidez e confiabilidade dos investimentos
+                  com lastro patrimonial robusto
+                </p>
+              </div>
             </div>
-          </div>
+          </a>
+
         </div>
 
         <div className="max-w-4xl mx-auto">

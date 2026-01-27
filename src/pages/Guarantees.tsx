@@ -37,7 +37,7 @@ const Guarantees = () => {
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 mb-16">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 border-2 border-blue-200">
+            <div className="bg-club8-turquoise rounded-2xl p-8 border-2 border-blue-200">
               <div className="text-center">
                 <Building className="w-16 h-16 text-blue-600 mx-auto mb-6" />
                 <h3 className="text-2xl font-bold text-club8-dark mb-4">Garantias Hipotecárias</h3>
@@ -57,16 +57,16 @@ const Guarantees = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border-2 border-green-200">
+            <div className="bg-club8-turquoise rounded-2xl p-8 border-2 border-green-200">
               <div className="text-center">
-                <FileCheck className="w-16 h-16 text-green-600 mx-auto mb-6" />
+                <FileCheck className="w-16 h-16 text-blue-600 mx-auto mb-6" />
                 <h3 className="text-2xl font-bold text-club8-dark mb-4">Alienação Fiduciária</h3>
                 <p className="text-gray-700 mb-6">
                   Garantia onde bens são transferidos temporariamente como forma de assegurar 
                   o pagamento, oferecendo proteção jurídica máxima.
                 </p>
                 <div className="bg-white rounded-lg p-4">
-                  <h4 className="font-bold text-green-600 mb-2">Como funciona:</h4>
+                  <h4 className="font-bold text-blue-600 mb-2">Como funciona:</h4>
                   <ul className="text-sm text-gray-600 space-y-1">
                     <li>• Transferência de propriedade</li>
                     <li>• Proteção jurídica total</li>
@@ -77,9 +77,9 @@ const Guarantees = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border-2 border-purple-200">
+            <div className="bg-club8-turquoise rounded-2xl p-8 border-2 border-purple-200">
               <div className="text-center">
-                <Lock className="w-16 h-16 text-purple-600 mx-auto mb-6" />
+                <Lock className="w-16 h-16 text-blue-600 mx-auto mb-6" />
                 <h3 className="text-2xl font-bold text-club8-dark mb-4">Patrimônio Sólido</h3>
                 <p className="text-gray-700 mb-6">
                   Mais de R$ 1 bilhão em patrimônio da empresa como garantia adicional, 
@@ -144,7 +144,7 @@ const Guarantees = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-club8-turquoise to-club8-turquoise-secondary rounded-3xl p-8 text-white">
+            <div className="bg-gradient-to-br from-club8-turquoise to-club8-turquoise-secondary rounded-3xl p-8 text-black">
               <h3 className="text-3xl font-bold mb-6">Diferencial Único no Mercado</h3>
               <p className="text-xl mb-8 opacity-90">
                 Nenhuma outra plataforma oferece três tipos diferentes de garantias reais 

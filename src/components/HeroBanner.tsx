@@ -61,14 +61,14 @@ const HeroBanner = () => {
                 document
                     .getElementById('seja-socio')
                     ?.scrollIntoView({ behavior: 'smooth' })
-              }} size="lg" className="bg-club8-turquoise hover:bg-club8-turquoise-secondary text-club8-dark font-bold px-8 py-4 text-lg">
+              }} size="lg" className="bg-club8-turquoise hover:bg-club8-white text-club8-dark font-bold px-8 py-4 text-lg">
                 Quero Investir Agora
               </Button>
               <Button onClick={() => {
                 document
                     .getElementById('simulador')
                     ?.scrollIntoView({ behavior: 'smooth' })
-              }} size="lg" variant="outline" className="border-club8-turquoise text-club8-dark  hover:bg-club8-dar hover:text-club8-dark px-8 py-4 text-lg">
+              }} size="lg" variant="outline" className="border-club8-turquoise text-club8-dark  hover:bg-club8-turquoise hover:text-club8-dark px-8 py-4 text-lg">
                 Fazer Simulação
               </Button>
             </div>

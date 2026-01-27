@@ -13,17 +13,19 @@ const Footer = () => {
               <img src="/lovable-uploads/661a12e3-d985-45cc-a92c-11b07f29d866.png" alt="Club8 Logo" className="h-40 w-auto object-scale-down" />
             </div>
             <p className="text-gray-300 mb-6">
-              Plataforma exclusiva de investimentos para médicos, oferecendo rentabilidade superior 
+              Plataforma de investimentos exclusiva para médicos, oferecendo rentabilidade superior
               e benefícios únicos para profissionais da saúde.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-club8-turquoise hover:text-white transition-colors">
+              <a href="https://www.instagram.com/club8_oficial/" className="text-club8-turquoise hover:text-white transition-colors">
                 <Instagram size={24} />
               </a>
+              {/*
               <a href="#" className="text-club8-turquoise hover:text-white transition-colors">
                 <Linkedin size={24} />
               </a>
-              <a href="#" className="text-club8-turquoise hover:text-white transition-colors">
+              */}
+              <a href="https://www.facebook.com/profile.php?id=61570123167016" className="text-club8-turquoise hover:text-white transition-colors">
                 <Facebook size={24} />
               </a>
             </div>
@@ -52,20 +54,20 @@ const Footer = () => {
               <li className="text-gray-300">Bonificação por Renovação</li>
             </ul>
             <div className="mt-6 space-y-3">
-              <Button 
-                asChild
-                className="bg-club8-turquoise hover:bg-club8-turquoise-secondary text-club8-dark font-semibold w-full"
-              >
-                <a href="/fila-de-espera">Fila de Espera</a>
-              </Button>
-              <Button 
-                asChild
-                className="bg-green-600 hover:bg-green-700 text-white font-semibold w-full"
+              <Button
+                  asChild
+                  className="bg-club8-turquoise hover:bg-club8-white text-club8-dark font-semibold w-full"
               >
                 <a href="/aporte" className="flex items-center justify-center gap-2">
                   <TrendingUp className="w-4 h-4" />
-                  Realizar Aporte
+                  Investir Agora
                 </a>
+              </Button>
+              <Button 
+                asChild
+                className="bg-club8-turquoise hover:bg-club8-white text-club8-dark font-semibold w-full"
+              >
+                <a href="/fila-de-espera">Lista de Espera</a>
               </Button>
             </div>
           </div>
@@ -101,7 +103,7 @@ const Footer = () => {
         <div className="border-t border-gray-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-300 text-sm">
-              © 2024 Club8. Todos os direitos reservados.
+              © 2026 Club8. Todos os direitos reservados.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="/politica-privacidade" className="text-gray-300 hover:text-club8-turquoise text-sm transition-colors">
