@@ -131,7 +131,7 @@ const InvestmentPlans = () => {
                 document
                     .getElementById('seja-socio')
                     ?.scrollIntoView({ behavior: 'smooth' })
-              }} className={`w-full py-4 text-lg font-bold ${plan.popular ? 'bg-club8-turquoise hover:bg-club8-turquoise-secondary text-club8-dark' : 'bg-club8-dark hover:bg-gray-800 text-white'}`} size="lg">
+              }} variant="outline" className={`w-full py-4 text-lg font-bold ${plan.popular ? 'bg-club8-turquoise hover:bg-club8-white hover:border-club8-turquoise text-club8-dark' : 'bg-club8-dark hover:bg-club8-white hover:text-black hover:border-black text-white'}`} size="lg">
                 Quero Investir Agora
               </Button>
             </div>)}

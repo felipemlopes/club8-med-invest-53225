@@ -166,7 +166,7 @@ const Guarantees = () => {
               
               <Button 
                 asChild
-                className="w-full bg-white text-club8-dark hover:bg-gray-100 font-semibold"
+                className="w-full bg-white text-club8-dark hover:bg-club8-turquoise font-semibold"
               >
                 <a href="/login">Quero Investir com Segurança</a>
               </Button>

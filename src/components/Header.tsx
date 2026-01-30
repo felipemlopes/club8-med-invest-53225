@@ -28,7 +28,7 @@ const Header = () => {
     href: '/garantias'
   }, {
     label: 'Contato',
-    href: '/#contato'
+    href: '/contato'
   }];
 
   const handleAuthAction = () => {

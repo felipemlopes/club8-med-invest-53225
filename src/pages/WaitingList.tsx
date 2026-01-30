@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { CheckCircle, Clock, Star, Shield } from 'lucide-react';
+import {CheckCircle, Clock, Star, Shield, Gem} from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const WaitingList = () => {
@@ -119,7 +119,7 @@ const WaitingList = () => {
 
             <Card className="border-2 border-club8-turquoise">
               <CardHeader className="text-center">
-                <Shield className="w-12 h-12 text-club8-turquoise mx-auto mb-4" />
+                <Gem className="w-12 h-12 text-club8-turquoise mx-auto mb-4" />
                 <CardTitle>Club8 Platinum</CardTitle>
                 <CardDescription>Plano premium com rentabilidade de 2,0% ao mês</CardDescription>
               </CardHeader>

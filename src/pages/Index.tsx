@@ -9,8 +9,25 @@ import QuotasAvailable from '@/components/QuotasAvailable';
 import BonusSection from '@/components/BonusSection';
 import MembershipSection from '@/components/MembershipSection';
 import Footer from '@/components/Footer';
+import {useEffect} from "react";
+import {useLocation} from "react-router-dom";
 
 const Index = () => {
+
+    const { hash } = useLocation();
+
+    useEffect(() => {
+        if (!hash) return;
+
+        const id = hash.replace("#", "");
+        const element = document.getElementById(id);
+
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [hash]);
+
+
   return (
     <div className="min-h-screen">
       <Header />

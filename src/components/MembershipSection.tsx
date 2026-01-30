@@ -245,7 +245,8 @@ const MembershipSection = () => {
 
                   <Button 
                     type="submit"
-                    className="w-full mt-8 h-14 text-lg font-bold bg-club8-turquoise hover:bg-club8-turquoise-secondary text-club8-dark"
+                    variant="outline"
+                    className="w-full mt-8 h-14 text-lg font-bold border-club8-turquoise bg-club8-turquoise hover:bg-club8-white text-club8-dark"
                   >
                     Finalizar Cadastro
                   </Button>

@@ -48,10 +48,18 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold text-club8-turquoise mb-6">Investimentos</h3>
             <ul className="space-y-4">
-              <li className="text-gray-300">Club8 Gold - 1,8% a.m.</li>
-              <li className="text-gray-300">Club8 Platinum - 2,0% a.m.</li>
-              <li className="text-gray-300">Programa de Indicações</li>
-              <li className="text-gray-300">Bonificação por Renovação</li>
+              <li className="text-gray-300">
+                <a href="/#planos" className="text-gray-300 hover:text-club8-turquoise transition-colors">Club8 Gold - 1,8% a.m.</a>
+              </li>
+              <li className="text-gray-300">
+                <a href="/#planos" className="text-gray-300 hover:text-club8-turquoise transition-colors">Club8 Platinum - 2,0% a.m.</a>
+              </li>
+              <li className="text-gray-300">
+                <a href="/#bonificacoes" className="text-gray-300 hover:text-club8-turquoise transition-colors">Programa de Indicações</a>
+              </li>
+              <li className="text-gray-300">
+                <a href="/#bonificacoes" className="text-gray-300 hover:text-club8-turquoise transition-colors">Bonificação por Renovação</a>
+              </li>
             </ul>
             <div className="mt-6 space-y-3">
               <Button

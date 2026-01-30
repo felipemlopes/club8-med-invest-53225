@@ -18,6 +18,7 @@ import TermsOfUse from "./pages/TermsOfUse";
 import LGPD from "./pages/LGPD";
 import NotFound from "./pages/NotFound";
 import {ReferralTracker} from "@/components/ReferralTracker.tsx";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/quem-somos" element={<AboutUs />} />
             <Route path="/garantias" element={<Guarantees />} />
             <Route path="/aporte" element={<InvestmentFlow />} />
+            <Route path="/contato" element={<Contact />} />
             <Route path="/fila-de-espera" element={<WaitingList />} />
             <Route path="/politica-privacidade" element={<PrivacyPolicy />} />
             <Route path="/termos-de-uso" element={<TermsOfUse />} />
