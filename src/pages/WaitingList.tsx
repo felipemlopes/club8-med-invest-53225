@@ -9,8 +9,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import {CheckCircle, Clock, Star, Shield, Gem} from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import {useQuery} from "@tanstack/react-query";
+import investmentApi, {Plan} from "@/lib/investmentApi.ts";
 
 const WaitingList = () => {
+  const { data: plans = [], isLoading, error, refetch } = useQuery<Plan[]>({
+    queryKey: ['/api/plans'],
+    queryFn: () => investmentApi.getPlans(),
+    staleTime: 30000,
+    retry: 2,
+  });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -83,78 +91,62 @@ const WaitingList = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 mb-16">
-            <Card className="border-2 border-club8-turquoise">
-              <CardHeader className="text-center">
-                <Star className="w-12 h-12 text-club8-turquoise mx-auto mb-4" />
-                <CardTitle>Club8 Gold</CardTitle>
-                <CardDescription>Plano com rentabilidade de 1,8% ao mês</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center mb-6">
-                  <div className="text-3xl font-bold club8-text-gradient mb-2">
-                    1,8% a.m.
-                  </div>
-                  <div className="text-lg text-gray-600">Rentabilidade</div>
-                </div>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    Investimento mínimo: R$ 50.000
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    Garantias reais
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    Liquidez em 30 dias
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    Suporte especializado
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+            {plans.map((plan, index) => (
+                <Card
+                    key={plan.id ?? index}
+                    className={`border-2 ${
+                        plan.popular ? 'border-club8-turquoise' : 'border-gray-200'
+                    }`}
+                >
+                  <CardHeader className="text-center">
+                    {plan.popular ? (
+                        <Gem className="w-12 h-12 text-club8-turquoise mx-auto mb-4" />
+                    ) : (
+                        <Star className="w-12 h-12 text-club8-turquoise mx-auto mb-4" />
+                    )}
 
-            <Card className="border-2 border-club8-turquoise">
-              <CardHeader className="text-center">
-                <Gem className="w-12 h-12 text-club8-turquoise mx-auto mb-4" />
-                <CardTitle>Club8 Platinum</CardTitle>
-                <CardDescription>Plano premium com rentabilidade de 2,0% ao mês</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center mb-6">
-                  <div className="text-3xl font-bold club8-text-gradient mb-2">
-                    2,0% a.m.
-                  </div>
-                  <div className="text-lg text-gray-600">Rentabilidade</div>
-                </div>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    Investimento mínimo: R$ 100.000
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    Garantias reais
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    Liquidez em 30 dias
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    Suporte VIP
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    Bonificações extras
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+                    <CardTitle>{plan.name}</CardTitle>
+                    <CardDescription>
+                      Plano com rentabilidade de {plan.monthly_return} ao mês
+                    </CardDescription>
+                  </CardHeader>
+
+                  <CardContent>
+                    <div className="text-center mb-6">
+                      <div className="text-3xl font-bold club8-text-gradient mb-2">
+                        {plan.monthly_return} a.m.
+                      </div>
+                      <div className="text-lg text-gray-600">Rentabilidade</div>
+                    </div>
+
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Investimento mínimo: {plan.min_investment}
+                      </li>
+
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Liquidez: {plan.liquidez}
+                      </li>
+
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        Carência: {plan.carencia}
+                      </li>
+
+                      {plan.benefits?.map((benefit, i) => (
+                          <li key={i} className="flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4 text-green-500" />
+                            {benefit.name}
+                          </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+            ))}
           </div>
+
         </div>
       </section>
 

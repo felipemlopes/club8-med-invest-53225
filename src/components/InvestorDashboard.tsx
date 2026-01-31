@@ -48,7 +48,8 @@ const InvestorDashboard = () => {
   const planoNome = dashboardData?.plan?.name || 'Club8 Gold';
 
   const lucroOperacional = saldoAtual - totalInvestido;
-  const rentabilidadeTotal = totalInvestido > 0 ? ((lucroOperacional / totalInvestido) * 100) : 0;
+  //const rentabilidadeTotal = totalInvestido > 0 ? ((lucroOperacional / totalInvestido) * 100) : 0;
+  const rentabilidadeTotal = rentabilidadeMensal * 12;
 
   const monthlyReturns = dashboardData?.recent_returns?.map((item) => ({
     mes: item.month,
@@ -95,7 +96,7 @@ const InvestorDashboard = () => {
             <Button 
               onClick={handleLogout}
               variant="outline" 
-              className="border-club8-turquoise text-club8-turquoise hover:bg-club8-turquoise hover:text-club8-dark"
+              className="border-club8-turquoise text-club8-dark hover:bg-club8-turquoise hover:text-club8-dark"
               data-testid="button-logout"
             >
               <LogOut className="w-4 h-4 mr-2" />
@@ -114,50 +115,62 @@ const InvestorDashboard = () => {
                 <p className="text-2xl font-bold" data-testid="text-current-balance">
                   R$ {saldoAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                 </p>
+                <p>
+                  { new Date().toLocaleDateString('pt-BR') }
+                </p>
               </div>
               <Wallet className="w-8 h-8 opacity-80" />
             </div>
           </Card>
 
-          <Card className="p-6">
+          <Card className="p-6 border-club8-turquoise">
             <div className="flex items-center justify-between gap-2">
               <div>
                 <p className="text-sm text-gray-600 font-medium">Total Investido</p>
-                <p className="text-2xl font-bold text-club8-dark" data-testid="text-total-invested">
+                <p className="text-2xl font-bold text-club8-dark-green" data-testid="text-total-invested">
                   R$ {totalInvestido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                 </p>
+                <p>
+                  {user?.invested_at ?? ''}
+                </p>
               </div>
-              <DollarSign className="w-8 h-8 text-club8-turquoise" />
+              <DollarSign className="w-8 h-8 text-club8-dark-green" />
             </div>
           </Card>
 
-          <Card className="p-6">
+          <Card className="p-6 border-club8-turquoise">
             <div className="flex items-center justify-between gap-2">
               <div>
                 <p className="text-sm text-gray-600 font-medium">Rentabilidade Mensal</p>
-                <p className="text-2xl font-bold text-green-600" data-testid="text-monthly-rate">
+                <p className="text-2xl font-bold text-club8-dark-green" data-testid="text-monthly-rate">
                   {rentabilidadeMensal}%
                 </p>
+                <p>
+                  {user?.plan?.name ?? 'Sem plano'}
+                </p>
               </div>
-              <TrendingUp className="w-8 h-8 text-green-600" />
+              <TrendingUp className="w-8 h-8 text-club8-dark-green" />
             </div>
           </Card>
 
-          <Card className="p-6">
+          <Card className="p-6 border-club8-turquoise">
             <div className="flex items-center justify-between gap-2">
               <div>
                 <p className="text-sm text-gray-600 font-medium">Rentabilidade Total</p>
-                <p className="text-2xl font-bold text-green-600" data-testid="text-total-return">
+                <p className="text-2xl font-bold text-club8-dark-green" data-testid="text-total-return">
                   {rentabilidadeTotal.toFixed(1)}%
                 </p>
+                <p>
+                  12 Meses (sem bonificações)
+                </p>
               </div>
-              <Target className="w-8 h-8 text-green-600" />
+              <Target className="w-8 h-8 text-club8-dark-green" />
             </div>
           </Card>
         </div>
 
         <div className="mb-8">
-          <h3 className="text-xl font-bold text-club8-dark mb-4">Ganhos Previstos para o Final do Ano</h3>
+          <h3 className="text-xl font-bold text-club8-dark mb-4">Ganhos Previstos ao Final dos 12 meses</h3>
           <FutureProjectionsCards />
         </div>
 
@@ -219,11 +232,12 @@ const InvestorDashboard = () => {
           <BonusTracker />
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-2 gap-8">
           <div className="lg:col-span-2">
             <DocumentsSection />
           </div>
-          
+
+          {/*
           <Card className="p-6 bg-gradient-to-r from-green-50 to-green-100 border-green-200">
             <h3 className="text-lg font-bold text-green-800 mb-4">Lucro Acumulado</h3>
             <div className="space-y-3">
@@ -241,6 +255,8 @@ const InvestorDashboard = () => {
               </div>
             </div>
           </Card>
+          */}
+
         </div>
       </div>
     </div>

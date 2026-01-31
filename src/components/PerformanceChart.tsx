@@ -101,8 +101,9 @@ const PerformanceChart = () => {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={performanceData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="mes" />
-            <YAxis 
+            <XAxis dataKey="mes" tick={{ fill: '#000000', fontSize: 12 }} />
+            <YAxis
+              tick={{ fill: '#000000', fontSize: 12 }}
               tickFormatter={(value) => `R$ ${(value / 1000).toFixed(0)}k`}
               label={{ 
                 value: 'Valor (R$)', 
@@ -110,7 +111,13 @@ const PerformanceChart = () => {
                 position: 'insideLeft' 
               }} 
             />
-            <Tooltip 
+            <Tooltip
+                contentStyle={{
+                  border: 'none',
+                  color: '#000000'
+                }}
+                labelStyle={{ color: '#000000' }}
+                itemStyle={{ color: '#000000' }}
               formatter={(value) => [formatCurrency(Number(value)), '']} 
             />
             <Legend />
@@ -118,14 +125,14 @@ const PerformanceChart = () => {
             <Bar 
               dataKey="club8" 
               name="Club8"
-              fill="#00d4aa"
+              fill="#00ffff"
               shape={(props: any) => {
                 const isProjection = props.payload?.isProjection;
                 return (
                   <rect
                     {...props}
-                    fill={isProjection ? '#00d4aa80' : '#00d4aa'}
-                    stroke={isProjection ? '#00d4aa' : 'none'}
+                    fill={isProjection ? '#e1fffd' : '#00ffff'}
+                    stroke={isProjection ? '#e1fffd' : 'none'}
                     strokeWidth={isProjection ? 2 : 0}
                     strokeDasharray={isProjection ? "5,5" : "0,0"}
                   />
@@ -211,7 +218,7 @@ const PerformanceChart = () => {
 
       <div className="mt-4 text-center">
         <p className="text-sm text-gray-600">
-          <span className="inline-block w-3 h-3 bg-club8-turquoise rounded mr-2"></span>
+          <span className="inline-block w-3 h-3 rounded mr-2" style={{ backgroundColor:'#00ffff'}}></span>
           Meses sólidos são dados reais, meses com transparência são projeções
         </p>
       </div>

@@ -17,7 +17,7 @@ const Footer = () => {
               e benefícios únicos para profissionais da saúde.
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.instagram.com/club8_oficial/" className="text-club8-turquoise hover:text-white transition-colors">
+              <a href="https://www.instagram.com/club8_oficial/" target="_blank" className="text-club8-turquoise hover:text-white transition-colors">
                 <Instagram size={24} />
               </a>
               {/*
@@ -25,7 +25,7 @@ const Footer = () => {
                 <Linkedin size={24} />
               </a>
               */}
-              <a href="https://www.facebook.com/profile.php?id=61570123167016" className="text-club8-turquoise hover:text-white transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=61570123167016" target="_blank" className="text-club8-turquoise hover:text-white transition-colors">
                 <Facebook size={24} />
               </a>
             </div>

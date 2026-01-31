@@ -57,7 +57,9 @@ export default {
 					turquoise: '#00FFFF',
 					'turquoise-secondary': '#2BAAA7',
 					dark: '#231F20',
-					white: '#FFFFFF'
+					white: '#FFFFFF',
+					'dark-blue': '#171B25',
+					'dark-green': '#086d29'
 				}
 			},
 			borderRadius: {

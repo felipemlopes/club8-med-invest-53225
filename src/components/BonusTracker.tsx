@@ -48,30 +48,30 @@ const BonusTracker = () => {
       <div className="space-y-4">
         <div className="flex items-center justify-between gap-2 p-3 bg-green-50 rounded-lg">
           <div className="flex items-center gap-2">
-            <Users className="w-5 h-5 text-green-600" />
+            <Users className="w-5 h-5 text-black" />
             <div>
-              <p className="font-medium text-green-800">Indicações Ativas</p>
-              <p className="text-sm text-green-600">
+              <p className="font-medium text-black">Indicações Ativas</p>
+              <p className="text-sm text-black">
                 {activeUsers.length} pessoas investindo
               </p>
             </div>
           </div>
           <div className="text-right">
-            <p className="font-bold text-green-600" data-testid="text-active-bonus">
+            <p className="font-bold text-green-700" data-testid="text-active-bonus">
               R$ {totalBonusActive.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
             </p>
-            <p className="text-xs text-green-500">1% do valor investido</p>
+            <p className="text-xs text-green-700">1% do valor investido</p>
           </div>
         </div>
 
         {activeUsers.length > 0 && (
           <div className="bg-green-50 p-3 rounded-lg">
-            <p className="text-sm font-medium text-green-800 mb-2">Detalhamento das Indicações:</p>
-            <div className="space-y-1 text-xs text-green-700">
+            <p className="text-sm font-medium text-black mb-2">Detalhamento das Indicações:</p>
+            <div className="space-y-1 text-xs text-black">
               {activeUsers.map((user, index) => (
                 <div key={user.id} className="flex justify-between gap-2" data-testid={`row-bonus-detail-${user.id}`}>
                   <span className="truncate">{user.name}: R$ {user.invested_amount.toLocaleString('pt-BR')}</span>
-                  <span className="font-bold whitespace-nowrap">+ R$ {user.bonus_earned.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+                  <span className="font-bold whitespace-nowrap text-green-700">+ R$ {user.bonus_earned.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
                 </div>
               ))}
             </div>
@@ -79,12 +79,12 @@ const BonusTracker = () => {
         )}
 
         {pendingUsers.length > 0 && (
-          <div className="flex items-center justify-between gap-2 p-3 bg-orange-50 rounded-lg">
+          <div className="flex items-center justify-between gap-2 p-3 bg-green-50 rounded-lg">
             <div className="flex items-center gap-2">
-              <Users className="w-5 h-5 text-orange-600" />
+              <Users className="w-5 h-5 text-green-600" />
               <div>
-                <p className="font-medium text-orange-800">Indicações Pendentes</p>
-                <p className="text-sm text-orange-600">
+                <p className="font-medium text-green-800">Indicações Pendentes</p>
+                <p className="text-sm text-green-600">
                   {pendingUsers.length} pessoas ainda não investiram
                 </p>
               </div>
@@ -95,7 +95,7 @@ const BonusTracker = () => {
         <div className="border-t pt-3">
           <div className="flex justify-between items-center gap-2 flex-wrap">
             <span className="font-bold text-club8-dark">Total em Bonificações:</span>
-            <span className="font-bold text-xl text-club8-turquoise" data-testid="text-total-bonus-tracker">
+            <span className="font-bold text-xl text-green-700" data-testid="text-total-bonus-tracker">
               R$ {totalBonusActive.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
             </span>
           </div>

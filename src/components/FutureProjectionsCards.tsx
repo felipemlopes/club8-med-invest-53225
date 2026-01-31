@@ -47,63 +47,63 @@ const FutureProjectionsCards = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-      <Card className="p-6 bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
+      <Card className="p-6 bg-gradient-to-r from-club8-turquoise to-club8-turquoise-secondary text-club8-dark">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-blue-700 font-medium">Ganhos Operacionais do Ano</p>
-            <p className="text-2xl font-bold text-blue-600">
-              R$ {ganhosOperacionaisAno.toLocaleString('pt-BR')}
-            </p>
-            <p className="text-xs text-blue-600 mt-1">
-              {rentabilidadeMensal}% × 12 meses
-            </p>
-          </div>
-          <Calendar className="w-8 h-8 text-blue-600" />
-        </div>
-      </Card>
-
-      <Card className="p-6 bg-gradient-to-r from-green-50 to-green-100 border-green-200">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm text-green-700 font-medium">Bonificações do Ano</p>
-            <p className="text-2xl font-bold text-green-600">
-              R$ {bonusTotal.toLocaleString('pt-BR')}
-            </p>
-            <p className="text-xs text-green-600 mt-1">
-              {indicacoesValores.length} indicações ativas
-            </p>
-          </div>
-          <TrendingUp className="w-8 h-8 text-green-600" />
-        </div>
-      </Card>
-
-      <Card className="p-6 bg-gradient-to-r from-purple-50 to-purple-100 border-purple-200">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm text-purple-700 font-medium">Total do Final do Ano</p>
-            <p className="text-2xl font-bold text-purple-600">
+            <p className="text-sm text-black font-medium">Total do Final do Ano</p>
+            <p className="text-2xl font-bold text-black">
               R$ {ganhosFinaisAno.toLocaleString('pt-BR')}
             </p>
-            <p className="text-xs text-purple-600 mt-1">
+            <p className="text-xs text-black mt-1">
               Operacional + Bonificações
             </p>
           </div>
-          <Target className="w-8 h-8 text-purple-600" />
+          <Target className="w-8 h-8 opacity-80" />
         </div>
       </Card>
 
-      <Card className="p-6 bg-gradient-to-r from-orange-50 to-orange-100 border-orange-200">
+      <Card className="p-6 bg-white border-club8-turquoise">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-orange-700 font-medium">Rentabilidade Total Anual</p>
-            <p className="text-2xl font-bold text-orange-600">
+            <p className="text-sm text-gray-600 font-medium">Ganhos Operacionais do Ano</p>
+            <p className="text-2xl font-bold text-club8-dark-green">
+              R$ {ganhosOperacionaisAno.toLocaleString('pt-BR')}
+            </p>
+            <p className="text-xs text-club8-dark mt-1">
+              {rentabilidadeMensal}% × 12 meses
+            </p>
+          </div>
+          <Calendar className="w-8 h-8 text-club8-dark-green" />
+        </div>
+      </Card>
+
+      <Card className="p-6 bg-white border-club8-turquoise">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm text-gray-600 font-medium">Bonificações do Ano</p>
+            <p className="text-2xl font-bold text-club8-dark-green">
+              R$ {bonusTotal.toLocaleString('pt-BR')}
+            </p>
+            <p className="text-xs text-club8-dark mt-1">
+              {indicacoesValores.length} indicações ativas
+            </p>
+          </div>
+          <TrendingUp className="w-8 h-8 text-club8-dark-green" />
+        </div>
+      </Card>
+
+      <Card className="p-6 bg-white border-club8-turquoise">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm text-gray-600 font-medium">Rentabilidade Total Anual</p>
+            <p className="text-2xl font-bold text-club8-dark-green">
               {rentabilidadeTotalAno.toFixed(1)}%
             </p>
-            <p className="text-xs text-orange-600 mt-1">
+            <p className="text-xs text-club8-dark mt-1">
               Incluindo bonificações
             </p>
           </div>
-          <Zap className="w-8 h-8 text-orange-600" />
+          <Zap className="w-8 h-8 text-club8-dark-green" />
         </div>
       </Card>
     </div>
