@@ -2,8 +2,75 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Mail, Phone, MapPin, Send, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {useState} from "react";
+import investmentApi from "@/lib/investmentApi.ts";
+import {useToast} from "@/hooks/use-toast.ts";
 
 const Contact = () => {
+    const [form, setForm] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+    });
+    const { toast } = useToast();
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(null);
+    const [errors, setErrors] = useState<Record<string, string[]>>({});
+
+    const fieldError = (field: string) => {
+        if (!errors[field]) return null;
+        return (
+            <p className="text-sm text-red-500 mt-1">
+                {errors[field][0]}
+            </p>
+        );
+    };
+
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        setLoading(true);
+        setError(null);
+        setSuccess(false);
+
+        try {
+            const response = await investmentApi.sendContact(form);
+
+            setForm({
+                name: '',
+                email: '',
+                phone: '',
+                message: '',
+            });
+            setSuccess(true);
+            setLoading(false);
+            toast({
+                title: "Mensagem Recebida",
+                description: "A sua mensagem foi recebida!",
+            });
+        } catch (error) {
+            setLoading(false);
+            if (error.status === 422) {
+                setErrors(error.errors || {});
+            } else {
+                toast({
+                    title: 'Erro',
+                    description: 'Verifique os campos destacados.',
+                    variant: 'destructive',
+                });
+            }
+        }
+    };
+
     return (
         <div className="min-h-screen">
             <Header />
@@ -48,12 +115,6 @@ const Contact = () => {
                                 <span className="text-gray-700 text-lg">contato@club8.com.br</span>
                             </div>
 
-                            <div className="flex items-center gap-4">
-                                <MapPin className="w-6 h-6 text-club8-turquoise" />
-                                <span className="text-gray-700 text-lg">
-                  Atendimento 100% digital – Brasil
-                </span>
-                            </div>
                         </div>
 
                         <div className="mt-10 flex items-center gap-3 text-sm text-gray-500">
@@ -68,34 +129,66 @@ const Contact = () => {
                             Envie sua mensagem
                         </h3>
 
-                        <form className="space-y-5">
+                        <form className="space-y-5" onSubmit={handleSubmit}>
                             <input
                                 type="text"
+                                name="name"
+                                value={form.name}
+                                onChange={handleChange}
                                 placeholder="Nome completo"
                                 className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-club8-turquoise"
                             />
+                            {fieldError('name')}
 
                             <input
                                 type="email"
+                                name="email"
+                                value={form.email}
+                                onChange={handleChange}
                                 placeholder="E-mail"
                                 className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-club8-turquoise"
                             />
+                            {fieldError('email')}
 
                             <input
                                 type="text"
+                                name="phone"
+                                value={form.phone}
+                                onChange={handleChange}
                                 placeholder="Telefone / WhatsApp"
                                 className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-club8-turquoise"
                             />
+                            {fieldError('phone')}
 
                             <textarea
                                 placeholder="Escreva sua mensagem"
+                                name="message"
+                                value={form.message}
+                                onChange={handleChange}
                                 rows={4}
                                 className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-club8-turquoise"
                             />
+                            {fieldError('message')}
 
-                            <Button variant="outline" className="w-full bg-club8-turquoise text-club8-dark hover:bg-club8-white hover:border-club8-turquoise font-semibold flex items-center gap-2 justify-center">
+                            {success && (
+                                <p className="text-green-600 text-sm">
+                                    Mensagem enviada com sucesso!
+                                </p>
+                            )}
+
+                            {error && (
+                                <p className="text-red-600 text-sm">
+                                    {error}
+                                </p>
+                            )}
+
+                            <Button
+                                type="submit"
+                                disabled={loading}
+                                className="w-full bg-club8-turquoise text-club8-dark hover:bg-club8-white hover:border-club8-turquoise font-semibold flex items-center gap-2 justify-center"
+                            >
                                 <Send className="w-4 h-4" />
-                                Enviar mensagem
+                                {loading ? 'Enviando...' : 'Enviar mensagem'}
                             </Button>
                         </form>
                     </div>

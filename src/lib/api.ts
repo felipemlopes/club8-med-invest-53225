@@ -6,6 +6,12 @@ interface ApiResponse<T> {
   status: number;
 }
 
+export interface ApiError {
+  message: string;
+  errors?: Record<string, string[]>;
+  status: number;
+}
+
 class ApiClient {
   private baseUrl: string;
 
@@ -41,32 +47,32 @@ class ApiClient {
       (headers as Record<string, string>)['Authorization'] = `Bearer ${token}`;
     }
 
-    try {
-      const response = await fetch(`${this.baseUrl}${endpoint}`, {
-        ...options,
-        headers,
-      });
+    const response = await fetch(`${this.baseUrl}${endpoint}`, {
+      ...options,
+      headers,
+    });
 
-      const data = await response.json().catch(() => null);
+    const data = await response.json().catch(() => null);
 
-      if (!response.ok) {
-        return {
-          error: data?.message || `Error: ${response.status}`,
-          status: response.status,
-        };
-      }
-
+    /*if (!response.ok) {
       return {
-        data,
+        error: data?.message || `Error: ${response.status}`,
         status: response.status,
       };
-    } catch (error) {
-      console.error('API request failed:', error);
-      return {
-        error: 'Erro de conexão com o servidor',
-        status: 0,
-      };
+    }*/
+
+    if (!response.ok) {
+      throw {
+        message: data?.message || 'Erro inesperado',
+        errors: data?.errors,
+        status: response.status,
+      } as ApiError;
     }
+
+    return {
+      data,
+      status: response.status,
+    };
   }
 
   async get<T>(endpoint: string): Promise<ApiResponse<T>> {

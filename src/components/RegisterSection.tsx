@@ -72,7 +72,7 @@ const RegisterSection = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-
+  const [errors, setErrors] = useState<Record<string, string[]>>({});
   const [formData, setFormData] = useState({
     name: '',
     crm: '',
@@ -82,9 +82,19 @@ const RegisterSection = () => {
     email: '',
     phone: '',
     plan_id: '',
+    indication: '',
     password: '',
     password_confirmation: '',
   });
+
+  const fieldError = (field: string) => {
+    if (!errors[field]) return null;
+    return (
+        <p className="text-sm text-red-500 mt-1">
+          {errors[field][0]}
+        </p>
+    );
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -378,6 +388,22 @@ const RegisterSection = () => {
                 >
                   {showPasswordConfirm ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-club8-dark mb-2">
+
+                Código de Indicação
+              </label>
+              <div className="relative">
+                <Input
+                  type="text"
+                  placeholder=""
+                  value={formData.indication}
+                  onChange={(e) => setFormData({ ...formData, indication: e.target.value })}
+                  className="h-12 pr-10"
+                  data-testid="input-indication"
+                />
               </div>
             </div>
 

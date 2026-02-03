@@ -1,13 +1,13 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { 
-  TrendingUp, 
-  DollarSign, 
+import {
+  TrendingUp,
+  DollarSign,
   Calendar,
   LogOut,
   Wallet,
   Target,
-  Loader2
+  Loader2, UserPlus, Users, ArrowDownCircle
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +18,9 @@ import PerformanceChart from './PerformanceChart';
 import BonusTracker from './BonusTracker';
 import DocumentsSection from './DocumentsSection';
 import FutureProjectionsCards from './FutureProjectionsCards';
-import investmentApi, { DashboardData } from '@/lib/investmentApi';
+import investmentApi, {DashboardData, TimelineData, TimelineItem} from '@/lib/investmentApi';
+import MyReferral from "@/components/MyReferral.tsx";
+import {ReactNode} from "react";
 
 const InvestorDashboard = () => {
   const { user, logout } = useAuth();
@@ -30,6 +32,46 @@ const InvestorDashboard = () => {
     staleTime: 30000,
     retry: 2,
   });
+
+  const { data: timeline = [] } = useQuery<TimelineItem[]>({
+    queryKey: ['/api/timeline'],
+    queryFn: investmentApi.getTimeline,
+  });
+
+  /*const timeline = [
+    {
+      type: 'aporte',
+      title: 'Aporte Inicial',
+      date: '10/01/2024',
+      amount: '50.000,00',
+      icon: <Wallet className="w-4 h-4 text-white" />,
+    },
+    {
+      type: 'retorno',
+      title: 'Rendimento - Janeiro',
+      date: '31/01/2024',
+      amount: '625,00',
+      extra: '1,25% no mês',
+      icon: <TrendingUp className="w-4 h-4 text-white" />,
+    },
+    {
+      type: 'retorno',
+      title: 'Rendimento - Fevereiro',
+      date: '29/02/2024',
+      amount: '640,00',
+      extra: '1,28% no mês',
+      icon: <TrendingUp className="w-4 h-4 text-white" />,
+    },
+    {
+      type: 'indicacao',
+      title: 'Bônus por Indicação',
+      date: '05/03/2024',
+      amount: '500,00',
+      extra: 'Indicação de Dr. João',
+      icon: <UserPlus className="w-4 h-4 text-white" />,
+    },
+  ];*/
+
 
   const handleLogout = () => {
     logout();
@@ -181,22 +223,41 @@ const InvestorDashboard = () => {
         <div className="grid lg:grid-cols-3 gap-8 mb-8">
           <div className="lg:col-span-2">
             <Card className="p-6">
-              <h3 className="text-xl font-bold text-club8-dark mb-6">Performance Mensal</h3>
-              {monthlyReturns.length > 0 ? (
-                <div className="space-y-4">
-                  {monthlyReturns.map((item, index) => (
-                    <div key={index} className="flex items-center justify-between gap-2 p-4 bg-gray-50 rounded-lg" data-testid={`row-monthly-return-${index}`}>
-                      <span className="font-medium text-club8-dark">{item.mes}</span>
-                      <div className="text-right">
-                        <p className="font-bold text-green-600">R$ {item.valor }</p>
-                        <p className="text-sm text-gray-600">{item.percentual}%</p>
+              <h3 className="text-xl font-bold text-club8-dark mb-6">Atualizações</h3>
+
+
+              <div className="relative h-[370px] max-h-[370px] overflow-y-auto pr-2">
+                {/* Linha vertical */}
+                <div className="absolute left-3 top-0 bottom-0 w-px bg-gray-200" />
+
+                {/* Itens */}
+                {timeline.map((item, index) => (
+                    <div key={item.id} className="relative flex gap-4">
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center ${getTimelineColor(item.type)}`}>
+                        {getTimelineIcon(item.type)}
+                      </div>
+
+                      <div className="bg-gray-50 rounded-lg p-4 w-full">
+                        <div className="flex justify-between items-center mb-1">
+                          <p className="font-semibold text-club8-dark">{item.title}</p>
+                          <span className="text-sm text-gray-500">{item.date}</span>
+                        </div>
+
+                        <p className="text-lg font-bold text-green-700">
+                          R$ {item.amount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                        </p>
+
+                        {item.extra && (
+                            <p className="text-sm text-gray-600 mt-1">{item.extra}</p>
+                        )}
                       </div>
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-gray-500 text-center py-8">Nenhum rendimento registrado ainda.</p>
-              )}
+                ))}
+
+
+
+              </div>
+
             </Card>
           </div>
 
@@ -232,6 +293,10 @@ const InvestorDashboard = () => {
           <BonusTracker />
         </div>
 
+        <div className="grid lg:grid-cols-1 gap-8 mb-8">
+          <MyReferral />
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-8">
           <div className="lg:col-span-2">
             <DocumentsSection />
@@ -263,4 +328,36 @@ const InvestorDashboard = () => {
   );
 };
 
+export function getTimelineIcon(type: TimelineItem['type']): ReactNode {
+  switch (type) {
+    case 'aporte':
+      return <ArrowDownCircle className="w-4 h-4 text-white" />;
+
+    case 'retorno':
+      return <TrendingUp className="w-4 h-4 text-white" />;
+
+    case 'indicacao':
+      return <Users className="w-4 h-4 text-white" />;
+
+    default:
+      return null;
+  }
+}
+
+export function getTimelineColor(type: TimelineItem['type']) {
+  switch (type) {
+    case 'aporte':
+      return 'bg-blue-600';
+    case 'retorno':
+      return 'bg-green-600';
+    case 'indicacao':
+      return 'bg-purple-600';
+    default:
+      return 'bg-gray-400';
+  }
+}
+
+
 export default InvestorDashboard;
+
+

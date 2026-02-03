@@ -18,6 +18,7 @@ export interface Plan {
   benefits: Feature[];
 }
 
+
 export interface DashboardData {
   total_invested: number;
   current_balance: number;
@@ -37,6 +38,18 @@ export interface DashboardData {
     rate: number;
   }>;
 }
+
+
+export interface TimelineItem {
+  id: number;
+  type: 'aporte' | 'retorno' | 'indicacao';
+  title: string;
+  extra?: string | null;
+  amount: number;
+  date: string;
+}
+
+export type TimelineData = TimelineItem[];
 
 export interface Investment {
   id: number;
@@ -127,6 +140,13 @@ export interface PerformanceMonth {
   tesouroDireto?: number;
 }
 
+export interface Contact {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
 export interface PerformanceResponse {
   initial_investment: number;
   months: PerformanceMonth[];
@@ -141,6 +161,19 @@ export const investmentApi = {
   async getDashboard() {
     const response = await api.get<{ data: DashboardData }>('/dashboard');
     return response.data?.data || null;
+  },
+
+  async getTimeline(): Promise<TimelineItem[]> {
+    const response = await api.get<{ data: any[] }>('/timeline');
+    console.log(response)
+    return (response.data ?? []).map(item => ({
+      id: item.id,
+      type: item.type,
+      title: item.title,
+      extra: item.extra,
+      amount: Number(item.amount),
+      date: new Date(item.created_at).toLocaleDateString('pt-BR'),
+    }));
   },
 
   async getFuture() {
@@ -211,6 +244,10 @@ export const investmentApi = {
     return response.data?.data || [];
   },
 
+  async sendContact(data: Contact) {
+    const response = await api.post<{ data: Contact }>('/contact', data);
+    return response.data;
+  },
 };
 
 export default investmentApi;
