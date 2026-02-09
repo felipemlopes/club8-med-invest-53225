@@ -173,7 +173,7 @@ const InvestorDashboard = () => {
                   R$ {totalInvestido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                 </p>
                 <p>
-                  {user?.invested_at ?? ''}
+                  {dashboardData?.entry_date ?? ''}
                 </p>
               </div>
               <DollarSign className="w-8 h-8 text-club8-dark-green" />

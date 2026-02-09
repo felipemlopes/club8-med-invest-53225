@@ -19,6 +19,7 @@ const MembershipSection = () => {
     city: '',
     email: '',
     phone: '',
+    indication: '',
     plan_id: '',
     password: '',
     password_confirmation: ''
@@ -62,6 +63,7 @@ const MembershipSection = () => {
       city: formData.city || undefined,
       specialty: formData.specialty || undefined,
       phone: formData.phone || undefined,
+      indication: formData.indication || undefined,
       plan_id: formData.plan_id ? parseInt(formData.plan_id) : undefined,
       referral_code: referralCode,
     });
@@ -241,6 +243,22 @@ const MembershipSection = () => {
                         <SelectItem value="lista">Lista de Espera</SelectItem>
                       </SelectContent>
                     </Select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-club8-dark mb-2">
+                      Código de quem Indicou
+                    </label>
+                    <div className="relative">
+                      <Input
+                          type="text"
+                          placeholder=""
+                          value={formData.indication}
+                          onChange={(e) => setFormData({ ...formData, indication: e.target.value })}
+                          className="h-12 pr-10"
+                          data-testid="input-indication"
+                      />
+                    </div>
                   </div>
 
                   <Button 

@@ -152,6 +152,7 @@ const RegisterSection = () => {
       city: formData.city || undefined,
       specialty: formData.specialty || undefined,
       phone: formData.phone || undefined,
+      indication: formData.indication || undefined,
       plan_id: formData.plan_id ? parseInt(formData.plan_id) : undefined,
       referral_code: referralCode,
     });
@@ -392,8 +393,7 @@ const RegisterSection = () => {
             </div>
             <div>
               <label className="block text-sm font-semibold text-club8-dark mb-2">
-
-                Código de Indicação
+                Código de quem Indicou
               </label>
               <div className="relative">
                 <Input

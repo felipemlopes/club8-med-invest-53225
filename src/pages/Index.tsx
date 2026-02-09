@@ -17,15 +17,34 @@ const Index = () => {
     const { hash } = useLocation();
 
     useEffect(() => {
-        if (!hash) return;
+        // Se não houver hash, vai para o topo absoluto
+        if (!hash) {
+            window.scrollTo(0, 0);
+            return;
+        }
 
         const id = hash.replace("#", "");
-        const element = document.getElementById(id);
 
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-        }
-    }, [hash]);
+        // Função para executar o scroll
+        const scrollToElement = () => {
+            const element = document.getElementById(id);
+            if (element) {
+                // Pegamos a posição do elemento em relação ao topo da página
+                const yOffset = -80; // AJUSTE AQUI: Altura do seu Header fixo (ex: 80px)
+                const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+                window.scrollTo({ top: y, behavior: "smooth" });
+            }
+        };
+
+        // 1. Tenta scrollar imediatamente
+        scrollToElement();
+
+        // 2. Tenta novamente após um micro-delay para compensar renderização de imagens/cards
+        const timer = setTimeout(scrollToElement, 300);
+
+        return () => clearTimeout(timer);
+    }, [hash, useLocation().pathname]); // Monitora hash e mudança de página
 
 
   return (

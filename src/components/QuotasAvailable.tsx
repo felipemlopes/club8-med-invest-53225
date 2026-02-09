@@ -111,7 +111,10 @@ const QuotasAvailable = () => {
                   }} size="lg" className="bg-club8-turquoise hover:bg-club8-white text-club8-dark font-bold px-8 py-4 text-lg">
                     Garantir Minha Cota
                   </Button>
-                  <Button onClick={() => navigate('/fila-de-espera')} size="lg" variant="outline" className="border-club8-turquoise text-club8-dark hover:bg-club8-turquoise hover:text-club8-dark px-8 py-4 text-lg">
+                  <Button onClick={() => {
+                    navigate('/fila-de-espera');
+                    window.scrollTo(0, 0); // Adicione esta linha
+                  }} size="lg" variant="outline" className="border-club8-turquoise text-club8-dark hover:bg-club8-turquoise hover:text-club8-dark px-8 py-4 text-lg">
                     Lista de Espera
                   </Button>
                 </div>

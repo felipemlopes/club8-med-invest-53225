@@ -219,6 +219,11 @@ export const investmentApi = {
     return response.data?.data || null;
   },
 
+  async getReferralsRegistred() {
+    const response = await api.get<{ data: ReferralData }>('/referrals/registred');
+    return response.data?.data || null;
+  },
+
   async sendReferralInvite(name: string, email: string, phone?: string) {
     const response = await api.post('/referrals/invite', { name, email, phone });
     return response;

@@ -6,7 +6,7 @@ import { useAuth } from '@/hooks/useAuth';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   
   const menuItems = [{
     label: 'Quem Somos',
@@ -72,9 +72,7 @@ const Header = () => {
               className="border-club8-turquoise text-club8-turquoise hover:bg-club8-turquoise hover:text-club8-dark"
               style={{color:'#000'}}
             >
-              {isAuthenticated ? (
-                window.location.pathname === '/dashboard' ? 'Sair' : 'Dashboard'
-              ) : 'Login'}
+              {isAuthenticated ? 'Dashboard' : 'Login'}
             </Button>
           </nav>
 

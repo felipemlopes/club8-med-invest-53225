@@ -66,7 +66,7 @@ const Footer = () => {
                   asChild
                   className="bg-club8-turquoise hover:bg-club8-white text-club8-dark font-semibold w-full"
               >
-                <a href="/aporte" className="flex items-center justify-center gap-2">
+                <a href="/#seja-socio" className="flex items-center justify-center gap-2">
                   <TrendingUp className="w-4 h-4" />
                   Investir Agora
                 </a>

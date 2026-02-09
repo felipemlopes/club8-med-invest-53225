@@ -41,7 +41,7 @@ const BonusTracker = () => {
   return (
     <Card className="p-6">
       <h3 className="text-lg font-bold text-club8-dark mb-4 flex items-center gap-2">
-        <Award className="w-5 h-5 text-club8-turquoise" />
+        <Award className="w-5 h-5 text-black" />
         Placar de Bonificações
       </h3>
       

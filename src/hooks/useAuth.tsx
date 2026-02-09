@@ -39,6 +39,7 @@ interface RegisterData {
   city?: string;
   specialty?: string;
   phone?: string;
+  indication?: string;
   plan_id?: number;
   referral_code?: string;
 }
@@ -117,7 +118,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (response.data) {
         api.setToken(response.data.access_token);
         setUser(response.data.user);
-        localStorage.setItem('club8_user', JSON.stringify(response.data.user));
+        localStorage.setItem('citizen_user', JSON.stringify(response.data.user));
         console.log('Login realizado com sucesso para:', email);
         return { success: true };
       }

@@ -27,10 +27,13 @@ const WaitingList = () => {
     state: '',
     specialty: '',
     preferredPlan: '',
+    indication: '',
     investmentAmount: '',
     comments: ''
   });
   const { toast } = useToast();
+
+  const referralCode = localStorage.getItem("referral_code");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,6 +51,7 @@ const WaitingList = () => {
       crm: '',
       state: '',
       specialty: '',
+      indication: '',
       preferredPlan: '',
       investmentAmount: '',
       comments: ''
