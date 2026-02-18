@@ -120,11 +120,11 @@ const PerformanceChart = () => {
                 itemStyle={{ color: '#000000' }}
               formatter={(value) => [formatCurrency(Number(value)), '']} 
             />
-            <Legend />
+
             
             <Bar 
               dataKey="club8" 
-              name="Club8"
+              name="Rentabilidade Aferida"
               fill="#00ffff"
               shape={(props: any) => {
                 const isProjection = props.payload?.isProjection;
@@ -216,10 +216,23 @@ const PerformanceChart = () => {
         </ResponsiveContainer>
       </div>
 
-      <div className="mt-4 text-center">
+      <div className="text-center">
         <p className="text-sm text-gray-600">
-          <span className="inline-block w-3 h-3 rounded mr-2" style={{ backgroundColor:'#00ffff'}}></span>
-          Meses sólidos são dados reais, meses com transparência são projeções
+          <span className="inline-block w-3 h-3 rounded mr-2" style={{ backgroundColor:'#00FFFF'}}></span>
+          Rentabilidade Aferida
+        </p>
+      </div>
+
+      <div className="text-center">
+        <p className="text-sm text-gray-600">
+          <span className="inline-block w-3 h-3 rounded mr-2" style={{ backgroundColor:'#E1FFFD'}}></span>
+          Rentabilidade Futura
+        </p>
+      </div>
+
+      <div className="mt-4 text-center">
+        <p className="text-sm text-gray-600 italic">
+          Obs: Não previsto no gráfico as bonificações
         </p>
       </div>
     </Card>
