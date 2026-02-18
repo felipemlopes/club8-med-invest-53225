@@ -127,5 +127,5 @@
 }
 
 .anchor-offset {
-  scroll-margin-top: 96px; /* altura do header */
+  scroll-margin-top: 144px; /* altura do header (112px logo + 32px padding) */
 }
