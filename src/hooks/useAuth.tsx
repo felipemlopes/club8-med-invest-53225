@@ -66,24 +66,30 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const initAuth = async () => {
       try {
         const token = localStorage.getItem('club8_token');
-        const savedUser = localStorage.getItem('club8_user');
-        
-        if (token && savedUser) {
-          const parsedUser = JSON.parse(savedUser);
-          setUser(parsedUser);
-          
-          const currentUser = await fetchCurrentUser();
-          if (currentUser) {
-            setUser(currentUser);
-            localStorage.setItem('club8_user', JSON.stringify(currentUser));
-          } else {
-            setUser(null);
-            localStorage.removeItem('club8_user');
-          }
+
+        if (!token) {
+          setUser(null);
+          return;
+        }
+
+        // garante que o token está no header
+        api.setToken(token);
+
+        // SEM depender do localStorage_user
+        const currentUser = await fetchCurrentUser();
+
+        if (currentUser) {
+          setUser(currentUser);
+          localStorage.setItem('club8_user', JSON.stringify(currentUser));
+        } else {
+          setUser(null);
+          localStorage.removeItem('club8_token');
+          localStorage.removeItem('club8_user');
         }
       } catch (error) {
         console.error('Erro ao inicializar autenticação:', error);
-        api.removeToken();
+        setUser(null);
+        localStorage.removeItem('club8_token');
         localStorage.removeItem('club8_user');
       } finally {
         setIsLoading(false);
@@ -118,7 +124,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (response.data) {
         api.setToken(response.data.access_token);
         setUser(response.data.user);
-        localStorage.setItem('citizen_user', JSON.stringify(response.data.user));
+        localStorage.setItem('club8_user', JSON.stringify(response.data.user));
         console.log('Login realizado com sucesso para:', email);
         return { success: true };
       }

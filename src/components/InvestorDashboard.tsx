@@ -99,6 +99,9 @@ const InvestorDashboard = () => {
     percentual: item.rate
   })) || [];
 
+  console.log("user")
+  console.log(user)
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">

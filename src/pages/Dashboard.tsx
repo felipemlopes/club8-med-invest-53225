@@ -8,11 +8,11 @@ const Dashboard = () => {
   const { isAuthenticated, isLoading } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (!isLoading && !isAuthenticated) {
       navigate('/login');
     }
-  }, [isAuthenticated, isLoading, navigate]);
+  }, [isAuthenticated, isLoading, navigate]);*/
 
   if (isLoading) {
     return (
@@ -25,9 +25,9 @@ const Dashboard = () => {
     );
   }
 
-  if (!isAuthenticated) {
+  /*if (!isAuthenticated) {
     return null;
-  }
+  }*/
 
   return <InvestorDashboard />;
 };
