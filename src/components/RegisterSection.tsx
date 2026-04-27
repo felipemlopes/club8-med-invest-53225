@@ -164,14 +164,17 @@ const RegisterSection = () => {
       });
       navigate('/dashboard');
     } else {
+      // Mostra erros por campo (ex: CRM inválido)
+      if (result.errors) {
+        setErrors(result.errors);
+      }
       toast({
         title: "Erro no cadastro",
-        description: result.error || "Não foi possível realizar o cadastro. Tente novamente.",
+        description: result.error || "Verifique os campos e tente novamente.",
         variant: "destructive",
       });
     }
-    setLoading(false);
-  };
+    setLoading(false);  };
 
   return (
     <div className="min-h-screen bg-club8-dark flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -225,6 +228,7 @@ const RegisterSection = () => {
                 className="h-12"
                 data-testid="input-crm"
               />
+              {fieldError('crm')}
             </div>
 
             <div className="grid grid-cols-2 gap-4">

@@ -22,7 +22,7 @@ interface LoginResponse {
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
-  register: (userData: RegisterData) => Promise<{ success: boolean; error?: string }>;
+  register: (userData: RegisterData) => Promise<{ success: boolean; error?: string; errors?: Record<string, string[]> }>;
   logout: () => void;
   updateUser: (userData: Partial<User>) => void;
   isAuthenticated: boolean;
@@ -99,7 +99,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     initAuth();
   }, []);
 
-  const register = async (userData: RegisterData): Promise<{ success: boolean; error?: string }> => {
+  const register = async (userData: RegisterData): Promise<{ success: boolean; error?: string; errors?: Record<string, string[]> }> => {
     try {
       const response = await api.post<LoginResponse>('/register', userData);
       
@@ -111,9 +111,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
       
       return { success: false, error: response.error || 'Erro ao registrar' };
-    } catch (error) {
-      console.error('Erro no registro:', error);
-      return { success: false, error: 'Erro de conexão' };
+    } catch (error: unknown) {
+      const apiError = error as { message?: string; errors?: Record<string, string[]>; status?: number };
+      return {
+        success: false,
+        error: apiError.message || 'Erro de conexão',
+        errors: apiError.errors,
+      };
     }
   };
 
