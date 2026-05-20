@@ -7,7 +7,7 @@ import {
   LogOut,
   Wallet,
   Target,
-  Loader2, UserPlus, Users, ArrowDownCircle
+  Loader2, UserPlus, Users, ArrowDownCircle, AlertTriangle
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +20,7 @@ import DocumentsSection from './DocumentsSection';
 import FutureProjectionsCards from './FutureProjectionsCards';
 import investmentApi, {DashboardData, TimelineData, TimelineItem} from '@/lib/investmentApi';
 import MyReferral from "@/components/MyReferral.tsx";
+import ContractSigningBanner from "@/components/ContractSigningBanner.tsx";
 import {ReactNode} from "react";
 
 const InvestorDashboard = () => {
@@ -151,7 +152,52 @@ const InvestorDashboard = () => {
         </div>
       </header>
 
+      {dashboardData?.contract_signed === false && dashboardData?.active_investment_id != null && (
+        <ContractSigningBanner investmentId={dashboardData.active_investment_id} />
+      )}
+
       <div className="container mx-auto px-6 py-8">
+        {dashboardData?.pending_investment ? (
+          <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-8 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 animate-fade-in-up">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center flex-shrink-0">
+                <AlertTriangle className="w-6 h-6 text-yellow-600" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-yellow-900">Pagamento Pendente</h3>
+                <p className="text-yellow-700 mt-1">
+                  Você tem uma reserva de {dashboardData.pending_investment.quotas} cotas aguardando pagamento. O prazo de 24h está correndo!
+                </p>
+              </div>
+            </div>
+            <Button
+              onClick={() => navigate('/aporte', { state: { pendingInvestment: dashboardData.pending_investment } })}
+              className="w-full sm:w-auto h-12 px-6 font-bold bg-yellow-500 hover:bg-yellow-600 text-white whitespace-nowrap"
+            >
+              Realizar pagamento
+            </Button>
+          </div>
+        ) : totalInvestido === 0 && (
+          <div className="bg-gradient-to-r from-club8-dark to-gray-900 border border-club8-turquoise/30 rounded-xl p-6 mb-8 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4 animate-fade-in-up">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-club8-turquoise/20 flex items-center justify-center flex-shrink-0">
+                <Target className="w-6 h-6 text-club8-turquoise" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white">Você ainda não possui cotas ativas</h3>
+                <p className="text-gray-300 mt-1">
+                  Faça seu primeiro aporte agora mesmo e comece a rentabilizar seu capital com o Club8.
+                </p>
+              </div>
+            </div>
+            <Button
+              onClick={() => navigate('/aporte')}
+              className="w-full sm:w-auto h-12 px-6 font-bold bg-club8-turquoise hover:bg-club8-turquoise-secondary text-club8-dark whitespace-nowrap"
+            >
+              Fazer meu primeiro aporte
+            </Button>
+          </div>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card className="p-6 bg-gradient-to-r from-club8-turquoise to-club8-turquoise-secondary text-club8-dark">
             <div className="flex items-center justify-between gap-2">

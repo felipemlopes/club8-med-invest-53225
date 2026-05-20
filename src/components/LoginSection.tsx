@@ -44,12 +44,18 @@ const LoginSection = () => {
 
     const result = await login(formData.email, formData.password);
     
-    if (result.success) {
+    if (result.success && result.user) {
       toast({
         title: "Login realizado com sucesso!",
-        description: "Redirecionando para o dashboard...",
+        description: "Redirecionando...",
       });
-      navigate('/dashboard');
+      
+      // Se o usuário ainda não tiver um aporte ativo, vai para o fluxo de aporte
+      if (result.user.status !== 'active') {
+        navigate('/aporte');
+      } else {
+        navigate('/dashboard');
+      }
     } else {
       toast({
         title: "Erro no login",

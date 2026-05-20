@@ -63,7 +63,7 @@ class ApiClient {
 
     if (!response.ok) {
       throw {
-        message: data?.message || 'Erro inesperado',
+        message: data?.message || data?.mensagem || data?.error || 'Erro inesperado',
         errors: data?.errors,
         status: response.status,
       } as ApiError;
@@ -77,6 +77,31 @@ class ApiClient {
 
   async get<T>(endpoint: string): Promise<ApiResponse<T>> {
     return this.request<T>(endpoint, { method: 'GET' });
+  }
+
+  async downloadBlob(endpoint: string): Promise<Blob> {
+    const token = this.getToken();
+    const headers: Record<string, string> = {
+      'Accept': '*/*',
+    };
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    const response = await fetch(`${this.baseUrl}${endpoint}`, {
+      method: 'GET',
+      headers,
+    });
+
+    if (!response.ok) {
+      const data = await response.json().catch(() => null);
+      throw {
+        message: data?.message || data?.error || 'Erro ao baixar arquivo',
+        status: response.status,
+      };
+    }
+
+    return response.blob();
   }
 
   async post<T>(endpoint: string, body?: unknown): Promise<ApiResponse<T>> {

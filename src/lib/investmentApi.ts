@@ -37,6 +37,15 @@ export interface DashboardData {
     amount: number;
     rate: number;
   }>;
+  pending_investment: {
+    id: number;
+    amount: number;
+    quotas: number;
+    created_at: string;
+    expires_at: string;
+  } | null;
+  contract_signed: boolean | null;
+  active_investment_id: number | null;
 }
 
 
@@ -59,6 +68,14 @@ export interface Investment {
   current_value: number;
   start_date: string;
   status: 'active' | 'pending' | 'completed' | 'cancelled';
+}
+
+export interface AvailabilityResponse {
+  success: boolean;
+  current_round: number;
+  total_quotas: number;
+  sold_quotas: number;
+  available_quotas: number;
 }
 
 export interface InvestmentReturn {
@@ -189,6 +206,33 @@ export const investmentApi = {
   async getInvestments() {
     const response = await api.get<{ data: Investment[] }>('/investments');
     return response.data?.data || [];
+  },
+
+  async getAvailability() {
+    const response = await api.get<AvailabilityResponse>('/investment/availability');
+    return response.data;
+  },
+
+  async downloadTermo(quotas: number) {
+    const blob = await api.downloadBlob(`/investment/termo-pre-reserva?quotas=${quotas}`);
+    return blob;
+  },
+
+  async reserveInvestment(quotas: number) {
+    const response = await api.post<{ success: boolean; investment_id: number; expires_at: string; amount: number; quotas: number; reserved_at: string }>('/investment/reserve', { quotas });
+    return response;
+  },
+
+  async checkInvestmentStatus(id: number) {
+    const response = await api.get<{ success: boolean; status: string }>(`/investment/${id}/status`);
+    return response;
+  },
+
+  async initiateContractSigning(investmentId: number): Promise<{ signing_url: string }> {
+    const response = await api.post<{ success: boolean; signing_url: string }>(
+      `/investment/${investmentId}/sign`
+    );
+    return response;
   },
 
   async createInvestment(planId: number, amount: number) {

@@ -11,6 +11,8 @@ import MembershipSection from '@/components/MembershipSection';
 import Footer from '@/components/Footer';
 import {useEffect, useRef} from "react";
 import {useLocation} from "react-router-dom";
+import AuditBanner from "@/components/AuditBanner.tsx";
+import InvestmentModel from "@/components/InvestmentModel.tsx";
 
 const Index = () => {
     const { hash } = useLocation();
@@ -62,7 +64,9 @@ const Index = () => {
       <Header />
       <HeroBanner />
       <HighlightSection />
+      <AuditBanner />
       <SecurityGuarantees />
+      <InvestmentModel />
       <InvestmentPlans />
       <InvestmentSimulator />
       <QuotasAvailable />

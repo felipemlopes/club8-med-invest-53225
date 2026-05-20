@@ -42,6 +42,14 @@ interface RegisterData {
   indication?: string;
   plan_id?: number;
   referral_code?: string;
+  cpf?: string;
+  zip_code?: string;
+  address?: string;
+  address_number?: string;
+  address_complement?: string;
+  neighborhood?: string;
+  address_city?: string;
+  address_state?: string;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -121,7 +129,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
+  const login = async (email: string, password: string): Promise<{ success: boolean; error?: string; user?: User }> => {
     try {
       const response = await api.post<LoginResponse>('/login', { email, password });
       
@@ -130,7 +138,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(response.data.user);
         localStorage.setItem('club8_user', JSON.stringify(response.data.user));
         console.log('Login realizado com sucesso para:', email);
-        return { success: true };
+        return { success: true, user: response.data.user };
       }
       
       return { success: false, error: response.error || 'Credenciais inválidas' };

@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { UserPlus, Mail, Phone, MapPin, Stethoscope, FileText, Lock, Eye, EyeOff } from 'lucide-react';
+import InputMask from 'react-input-mask';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate, Link } from 'react-router-dom';
@@ -147,7 +148,7 @@ const RegisterSection = () => {
       email: formData.email,
       password: formData.password,
       password_confirmation: formData.password_confirmation,
-      crm: formData.crm || undefined,
+      crm: formData.crm ? formData.crm.replace(/\D/g, '') : undefined,
       uf: formData.uf || undefined,
       city: formData.city || undefined,
       specialty: formData.specialty || undefined,
@@ -213,6 +214,7 @@ const RegisterSection = () => {
                 required
                 data-testid="input-name"
               />
+              {fieldError('name')}
             </div>
 
             <div>
@@ -224,9 +226,10 @@ const RegisterSection = () => {
                 type="text"
                 placeholder="Seu número do CRM"
                 value={formData.crm}
-                onChange={(e) => setFormData({ ...formData, crm: e.target.value })}
+                onChange={(e) => setFormData({ ...formData, crm: e.target.value.replace(/\D/g, '') })}
                 className="h-12"
                 data-testid="input-crm"
+                maxLength={7}
               />
               {fieldError('crm')}
             </div>
@@ -252,6 +255,7 @@ const RegisterSection = () => {
                     ))}
                   </SelectContent>
                 </Select>
+                {fieldError('uf')}
               </div>
 
               <div>
@@ -267,6 +271,7 @@ const RegisterSection = () => {
                   className="h-12"
                   data-testid="input-city"
                 />
+                {fieldError('city')}
               </div>
             </div>
 
@@ -290,6 +295,7 @@ const RegisterSection = () => {
                   ))}
                 </SelectContent>
               </Select>
+              {fieldError('specialty')}
             </div>
 
             <div>
@@ -306,6 +312,7 @@ const RegisterSection = () => {
                 required
                 data-testid="input-email"
               />
+              {fieldError('email')}
             </div>
 
             <div>
@@ -313,14 +320,22 @@ const RegisterSection = () => {
                 <Phone className="inline-block w-4 h-4 mr-2" />
                 Telefone
               </label>
-              <Input
-                type="tel"
-                placeholder="(00) 00000-0000"
+              <InputMask
+                mask="(99) 99999-9999"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="h-12"
-                data-testid="input-phone"
-              />
+              >
+                {(inputProps: any) => (
+                  <Input
+                    {...inputProps}
+                    type="tel"
+                    placeholder="(00) 00000-0000"
+                    className="h-12"
+                    data-testid="input-phone"
+                  />
+                )}
+              </InputMask>
+              {fieldError('phone')}
             </div>
 
             <div>
@@ -342,6 +357,7 @@ const RegisterSection = () => {
                   ))}
                 </SelectContent>
               </Select>
+              {fieldError('plan_id')}
             </div>
 
             <div>
@@ -368,6 +384,7 @@ const RegisterSection = () => {
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
+              {fieldError('password')}
             </div>
 
             <div>
