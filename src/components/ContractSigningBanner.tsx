@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FileSignature, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import investmentApi from '@/lib/investmentApi';
+import { useToast } from '@/hooks/use-toast';
 
 interface ContractSigningBannerProps {
   investmentId: number;
@@ -10,15 +11,23 @@ interface ContractSigningBannerProps {
 const ContractSigningBanner = ({ investmentId }: ContractSigningBannerProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const handleSign = async () => {
     setLoading(true);
     setError(null);
+    setSuccessMessage(null);
     try {
-      const { signing_url } = await investmentApi.initiateContractSigning(investmentId);
-      window.open(signing_url, '_blank');
+      const response = await investmentApi.initiateContractSigning(investmentId);
+      const message = response.message || 'Processo de assinatura iniciado. Em breve um email sera enviado.';
+      setSuccessMessage(message);
+      toast({
+        title: 'Assinatura iniciada',
+        description: message,
+      });
     } catch {
-      setError('NÃ£o foi possÃ­vel iniciar a assinatura. Tente novamente.');
+      setError('Não foi possível iniciar a assinatura. Tente novamente.');
     } finally {
       setLoading(false);
     }
@@ -33,6 +42,7 @@ const ContractSigningBanner = ({ investmentId }: ContractSigningBannerProps) => 
         </p>
       </div>
       <div className="flex items-center gap-3">
+        {successMessage && <p className="text-green-700 text-sm">{successMessage}</p>}
         {error && <p className="text-red-600 text-sm">{error}</p>}
         <Button
           onClick={handleSign}

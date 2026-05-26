@@ -228,11 +228,14 @@ export const investmentApi = {
     return response;
   },
 
-  async initiateContractSigning(investmentId: number): Promise<{ signing_url: string }> {
-    const response = await api.post<{ success: boolean; signing_url: string }>(
+  async initiateContractSigning(investmentId: number): Promise<{ success: boolean; message: string }> {
+    const response = await api.post<{ success: boolean; message: string }>(
       `/investment/${investmentId}/sign`
     );
-    return response;
+    return response.data ?? {
+      success: true,
+      message: 'Processo de assinatura iniciado. Em breve um email sera enviado.',
+    };
   },
 
   async createInvestment(planId: number, amount: number) {
