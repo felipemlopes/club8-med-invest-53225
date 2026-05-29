@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import investmentApi from '@/lib/investmentApi';
+import investmentApi, { Plan } from '@/lib/investmentApi';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -62,6 +62,9 @@ const InvestmentFlow = () => {
   const [soldQuotas, setSoldQuotas] = useState(0);
   const [isLoadingAvailability, setIsLoadingAvailability] = useState(true);
 
+  const [plans, setPlans] = useState<Plan[]>([]);
+  const [confirmedPlan, setConfirmedPlan] = useState<{ name: string; percent: number } | null>(null);
+
   useEffect(() => {
     const fetchAvailability = async () => {
       try {
@@ -80,11 +83,25 @@ const InvestmentFlow = () => {
     fetchAvailability();
   }, []);
 
+  useEffect(() => {
+    investmentApi.getPlans().then(setPlans).catch((error) => {
+      console.error("Erro ao buscar planos", error);
+    });
+  }, []);
+
+  function resolvePlan(quotas: number, plans: Plan[]): Plan | undefined {
+    return plans
+      .filter(p => p.min_quotas <= quotas)
+      .sort((a, b) => b.min_quotas - a.min_quotas)[0];
+  }
+
+  const resolvedPlan = useMemo(() => resolvePlan(quotas, plans), [quotas, plans]);
+
   const quotasDisponiveis = totalQuotas - soldQuotas;
   const soldOut = !isLoadingAvailability && quotasDisponiveis <= 0;
   const investmentAmount = quotas * VALOR_COTA;
-  const monthlyRate = quotas >= 2 ? 2.0 : 1.8;
-  const planName = quotas >= 2 ? 'Club8 Platinum' : 'Club8 Gold';
+  const monthlyRate = resolvedPlan?.percent ?? 0;
+  const planName = resolvedPlan?.name ?? '';
 
   const [reserveDeadline, setReserveDeadline] = useState<Date | null>(null);
 
@@ -107,6 +124,10 @@ const InvestmentFlow = () => {
       if (response.data?.success) {
         setInvestmentId(response.data.investment_id);
         setReserveDeadline(new Date(response.data.expires_at));
+        setConfirmedPlan({
+          name: response.data.plan_name,
+          percent: response.data.plan_percent,
+        });
         setStep(3);
         toast({ title: 'Reserva efetuada!', description: 'Suas cotas foram reservadas com sucesso.' });
       } else {
@@ -619,9 +640,9 @@ const InvestmentFlow = () => {
                   <CardTitle>Resumo</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <div className="flex justify-between"><span>Plano:</span><strong>{planName}</strong></div>
+                  <div className="flex justify-between"><span>Plano:</span><strong>{confirmedPlan?.name ?? planName}</strong></div>
                   <div className="flex justify-between"><span>Cotas:</span><strong>{quotas}</strong></div>
-                  <div className="flex justify-between"><span>Rentabilidade:</span><strong className="club8-text-gradient">{monthlyRate.toString().replace('.', ',')}% a.m.</strong></div>
+                  <div className="flex justify-between"><span>Rentabilidade:</span><strong className="club8-text-gradient">{(confirmedPlan?.percent ?? monthlyRate).toString().replace('.', ',')}% a.m.</strong></div>
                   <div className="flex justify-between border-t pt-2 mt-2">
                     <span>Valor total:</span>
                     <strong className="text-2xl text-club8-dark">R$ {investmentAmount.toLocaleString('pt-BR')},00</strong>

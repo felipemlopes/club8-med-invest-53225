@@ -7,6 +7,8 @@ export interface Feature {
 export interface Plan {
   id: number;
   name: string;
+  min_quotas: number;
+  percent: number;
   cotas: string;
   annual_return: number;
   monthly_return: number;
@@ -219,7 +221,7 @@ export const investmentApi = {
   },
 
   async reserveInvestment(quotas: number) {
-    const response = await api.post<{ success: boolean; investment_id: number; expires_at: string; amount: number; quotas: number; reserved_at: string }>('/investment/reserve', { quotas });
+    const response = await api.post<{ success: boolean; investment_id: number; expires_at: string; amount: number; quotas: number; reserved_at: string; plan_id: number; plan_name: string; plan_percent: number }>('/investment/reserve', { quotas });
     return response;
   },
 
