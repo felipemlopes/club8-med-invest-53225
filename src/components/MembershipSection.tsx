@@ -35,6 +35,7 @@ const MembershipSection = () => {
     plano: '',
     senha: '',
     confirmarSenha: '',
+    dataNascimento: '',
   });
 
   const estados = [
@@ -173,6 +174,7 @@ const MembershipSection = () => {
       neighborhood: formData.bairro,
       address_city: formData.cidadeEndereco,
       address_state: formData.estadoEndereco,
+      datebirth: formData.dataNascimento,
       ...(formData.complemento ? { address_complement: formData.complemento } : {}),
     };
 
@@ -411,6 +413,27 @@ const MembershipSection = () => {
                         Esses dados serão usados para emissão do contrato no momento da compra das cotas.
                       </p>
 
+                      <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                        <div>
+                          <label className="block text-sm font-semibold text-club8-dark mb-2">Data Nascimento *</label>
+                          <InputMask
+                              mask="99/99/9999"
+                              value={formData.dataNascimento}
+                              onChange={(e) =>
+                                  setFormData({ ...formData, dataNascimento: e.target.value })
+                              }
+                          >
+                            {(inputProps: any) => (
+                                <Input
+                                    {...inputProps}
+                                    placeholder="00/00/0000"
+                                    className="h-12"
+                                    required
+                                />
+                            )}
+                          </InputMask>
+                        </div>
+                      </div>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div>
                           <label className="block text-sm font-semibold text-club8-dark mb-2">CEP *</label>
