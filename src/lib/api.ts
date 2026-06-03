@@ -62,6 +62,10 @@ class ApiClient {
     }*/
 
     if (!response.ok) {
+      if (response.status === 401) {
+        this.removeToken();
+        window.location.href = '/login';
+      }
       throw {
         message: data?.message || data?.mensagem || data?.error || 'Erro inesperado',
         errors: data?.errors,
@@ -94,6 +98,10 @@ class ApiClient {
     });
 
     if (!response.ok) {
+      if (response.status === 401) {
+        this.removeToken();
+        window.location.href = '/login';
+      }
       const data = await response.json().catch(() => null);
       throw {
         message: data?.message || data?.error || 'Erro ao baixar arquivo',

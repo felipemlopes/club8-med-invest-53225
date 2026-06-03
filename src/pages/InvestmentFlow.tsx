@@ -57,6 +57,10 @@ const InvestmentFlow = () => {
   const [investmentId, setInvestmentId] = useState<number | null>(null);
   const [isReserving, setIsReserving] = useState(false);
   const [isDownloadingTerm, setIsDownloadingTerm] = useState(false);
+
+  const [pixData, setPixData] = useState<{ txid: string; qr_code: string; copia_e_cola: string; expires_at: string } | null>(null);
+  const [isLoadingPix, setIsLoadingPix] = useState(false);
+  const [pixError, setPixError] = useState<string | null>(null);
   
   const [totalQuotas, setTotalQuotas] = useState(200);
   const [soldQuotas, setSoldQuotas] = useState(0);
@@ -183,6 +187,34 @@ const InvestmentFlow = () => {
     };
   }, [step, investmentId, toast]);
 
+  // Generate PIX charge when entering step 3
+  useEffect(() => {
+    if (step === 3 && investmentId && !pixData && !isLoadingPix && !pixError) {
+      const generatePix = async () => {
+        setIsLoadingPix(true);
+        setPixError(null);
+        try {
+          const response = await investmentApi.generatePix(investmentId);
+          if (response.data?.success) {
+            setPixData({
+              txid: response.data.txid,
+              qr_code: response.data.qr_code,
+              copia_e_cola: response.data.copia_e_cola,
+              expires_at: response.data.expires_at,
+            });
+          }
+        } catch (error: any) {
+          const msg = error?.message || 'Erro ao gerar cobrança PIX. Tente novamente.';
+          setPixError(msg);
+          toast({ title: 'Erro', description: msg, variant: 'destructive' });
+        } finally {
+          setIsLoadingPix(false);
+        }
+      };
+      generatePix();
+    }
+  }, [step, investmentId, pixData, isLoadingPix, pixError, toast]);
+
   const deadlineFormatted = useMemo(() => {
     if (!reserveDeadline) return '';
     return reserveDeadline.toLocaleString('pt-BR', {
@@ -195,8 +227,9 @@ const InvestmentFlow = () => {
   }, [reserveDeadline]);
 
   const handleCopyPix = () => {
-    navigator.clipboard.writeText('00020126360014BR.GOV.BCB.PIX0114+5511999999999');
-    toast({ title: 'Chave PIX copiada!', description: 'Cole no seu app do banco para finalizar.' });
+    const code = pixData?.copia_e_cola || '';
+    navigator.clipboard.writeText(code);
+    toast({ title: 'Código PIX copiado!', description: 'Cole no seu app do banco para finalizar.' });
   };
 
   const handleSimulateSignature = () => {
@@ -658,27 +691,59 @@ const InvestmentFlow = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex justify-center">
-                    <div className="bg-white p-4 border-2 border-gray-200 rounded-lg">
-                      <img
-                        src={`https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(`PIX-CLUB8-${investmentAmount}`)}`}
-                        alt="QR Code PIX"
-                        className="w-60 h-60"
-                      />
+                  {isLoadingPix && (
+                    <div className="flex flex-col items-center justify-center py-8 space-y-4">
+                      <Loader2 className="w-10 h-10 animate-spin text-club8-turquoise" />
+                      <p className="text-gray-600">Gerando cobrança PIX...</p>
                     </div>
-                  </div>
-                  <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-                    <div><strong>Favorecido:</strong> Club8 Investimentos</div>
-                    <div><strong>CNPJ:</strong> 12.345.678/0001-90</div>
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="truncate">
-                        <strong>Chave PIX:</strong> <span className="font-mono">+5511999999999</span>
-                      </div>
-                      <Button variant="outline" size="sm" onClick={handleCopyPix}>
-                        <Copy className="w-4 h-4 mr-2" />Copiar
+                  )}
+
+                  {pixError && !isLoadingPix && (
+                    <div className="flex flex-col items-center justify-center py-8 space-y-4">
+                      <AlertTriangle className="w-10 h-10 text-red-500" />
+                      <p className="text-red-700 text-center">{pixError}</p>
+                      <Button
+                        variant="outline"
+                        onClick={() => { setPixData(null); setPixError(null); }}
+                      >
+                        Tentar novamente
                       </Button>
                     </div>
-                  </div>
+                  )}
+
+                  {pixData && !isLoadingPix && (
+                    <>
+                      <div className="flex justify-center">
+                        <div className="bg-white p-4 border-2 border-gray-200 rounded-lg">
+                          {pixData.qr_code ? (
+                            <img
+                              src={`https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(pixData.copia_e_cola)}`}
+                              alt="QR Code PIX"
+                              className="w-60 h-60"
+                            />
+                          ) : (
+                            <img
+                              src={`https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(pixData.copia_e_cola)}`}
+                              alt="QR Code PIX"
+                              className="w-60 h-60"
+                            />
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+                        <p className="text-sm font-semibold text-gray-700">Código Copia e Cola:</p>
+                        <div className="flex items-center gap-2">
+                          <code className="flex-1 text-xs bg-white p-3 rounded border border-gray-200 break-all font-mono text-gray-800">
+                            {pixData.copia_e_cola}
+                          </code>
+                          <Button variant="outline" size="sm" onClick={handleCopyPix} className="flex-shrink-0">
+                            <Copy className="w-4 h-4 mr-2" />Copiar
+                          </Button>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </CardContent>
               </Card>
 

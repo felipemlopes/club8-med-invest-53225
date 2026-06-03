@@ -230,6 +230,17 @@ export const investmentApi = {
     return response;
   },
 
+  async generatePix(investmentId: number) {
+    const response = await api.post<{
+      success: boolean;
+      txid: string;
+      qr_code: string;
+      copia_e_cola: string;
+      expires_at: string;
+    }>(`/investment/${investmentId}/pix`);
+    return response;
+  },
+
   async initiateContractSigning(investmentId: number): Promise<{ success: boolean; message: string }> {
     const response = await api.post<{ success: boolean; message: string }>(
       `/investment/${investmentId}/sign`
