@@ -30,7 +30,7 @@ import {
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-const VALOR_COTA = 50000;
+
 
 const InvestmentFlow = () => {
   const { user, isAuthenticated, isLoading } = useAuth();
@@ -103,7 +103,8 @@ const InvestmentFlow = () => {
 
   const quotasDisponiveis = totalQuotas - soldQuotas;
   const soldOut = !isLoadingAvailability && quotasDisponiveis <= 0;
-  const investmentAmount = quotas * VALOR_COTA;
+  const valorCota = resolvedPlan ? (parseFloat(String(resolvedPlan.price)) || 0) : 0;
+  const investmentAmount = valorCota > 0 ? quotas * valorCota : 0;
   const monthlyRate = resolvedPlan?.percent ?? 0;
   const planName = resolvedPlan?.name ?? '';
 
@@ -344,7 +345,12 @@ const InvestmentFlow = () => {
                   Quantas cotas você deseja <span className="club8-text-gradient">adquirir</span>?
                 </h1>
                 <p className="text-gray-600 max-w-2xl mx-auto">
-                  Cada cota Club8 tem o valor de <strong>R$ 50.000,00</strong>. As cotas são limitadas por rodada
+                  Cada cota Club8 tem o valor de{' '}
+                  <strong>
+                    {valorCota > 0
+                      ? `R$ ${valorCota.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`
+                      : '...'}
+                  </strong>. As cotas são limitadas por rodada
                   para preservar a exclusividade e a qualidade do retorno aos investidores.
                 </p>
               </div>
@@ -441,7 +447,9 @@ const InvestmentFlow = () => {
                         <div className="text-center">
                           <p className="text-xs text-gray-500 uppercase tracking-wide">Valor total</p>
                           <p className="font-bold text-club8-dark">
-                            R$ {investmentAmount.toLocaleString('pt-BR')}
+                             {valorCota > 0
+                               ? `R$ ${investmentAmount.toLocaleString('pt-BR')}`
+                               : '...'}
                           </p>
                         </div>
                       </div>

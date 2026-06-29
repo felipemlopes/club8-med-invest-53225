@@ -12,6 +12,7 @@ export interface Plan {
   cotas: string;
   annual_return: number;
   monthly_return: number;
+  price: number;
   min_investment: number;
   carencia: string;
   liquidez: string;
