@@ -33,7 +33,8 @@ const WaitingList = () => {
   });
   const { toast } = useToast();
 
-  const referralCode = localStorage.getItem("referral_code");
+  // INDICACOES-DISABLED - ver .kiro/specs/desativar-programa-indicacoes
+  // const referralCode = localStorage.getItem("referral_code");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

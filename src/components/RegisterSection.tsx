@@ -141,7 +141,8 @@ const RegisterSection = () => {
       return;
     }
 
-    const referralCode = localStorage.getItem("referral_code");
+    // INDICACOES-DISABLED - ver .kiro/specs/desativar-programa-indicacoes
+    // const referralCode = localStorage.getItem("referral_code");
 
     const result = await register({
       name: formData.name,
@@ -155,7 +156,7 @@ const RegisterSection = () => {
       phone: formData.phone || undefined,
       indication: formData.indication || undefined,
       plan_id: formData.plan_id ? parseInt(formData.plan_id) : undefined,
-      referral_code: referralCode,
+      // referral_code: referralCode,
     });
 
     if (result.success) {

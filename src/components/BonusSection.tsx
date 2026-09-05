@@ -46,7 +46,7 @@ const BonusSection = () => {
                 </p>
                 <Button onClick={() => {
                   document
-                      .getElementById('seja-socio')
+                      .getElementById('investir')
                       ?.scrollIntoView({ behavior: 'smooth' })
                 }} size="lg" className="bg-club8-dark hover:bg-club8-white hover:text-black text-white px-8 py-4 text-lg">
                   Quero fazer parte do Club8

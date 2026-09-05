@@ -5,21 +5,21 @@ import { TrendingUp, Clock, Users } from 'lucide-react';
 import { useNavigate } from 'react-router-dom'
 
 const QuotasAvailable = () => {
-  const [totalQuotas] = useState(200); // Total de cotas disponíveis (aumentado para 10M)
-  const [quotasVendidas] = useState(134); // Cotas já vendidas (proporcional)
+  const [totalQuotas] = useState(200); // Total de títulos disponíveis (aumentado para 10M)
+  const [quotasVendidas] = useState(134); // Títulos já vendidos (proporcional)
   const quotasDisponiveis = totalQuotas - quotasVendidas;
   const percentualVendido = (quotasVendidas / totalQuotas) * 100;
   const navigate = useNavigate()
 
   return (
-    <section id="cotas" className="py-20 bg-white anchor-offset">
+    <section id="titulos" className="py-20 bg-white anchor-offset">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-club8-dark mb-6">
-            Cotas <span className="club8-text-gradient">Limitadas</span>
+            Títulos <span className="club8-text-gradient">Limitados</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Club8 é um investimento exclusivo com número limitado de cotas por rodada. 
+            Club8 é um investimento exclusivo com número limitado de títulos por rodada.
             Garante já a sua participação!
           </p>
         </div>
@@ -29,7 +29,7 @@ const QuotasAvailable = () => {
             <div className="text-center mb-8">
               <h3 className="text-3xl font-bold mb-4">Rodada Atual de Captação</h3>
               <p className="text-xl text-gray-300">
-                Limite de R$ 10.000.000 (200 cotas)
+                Limite de R$ 10.000.000 (200 títulos)
               </p>
             </div>
 
@@ -53,19 +53,19 @@ const QuotasAvailable = () => {
                   <div className="text-2xl font-bold club8-text-gradient mb-1">
                     {quotasVendidas}
                   </div>
-                  <div className="text-sm text-gray-300">Cotas Vendidas</div>
+                  <div className="text-sm text-gray-300">Vendidos</div>
                 </div>
                 <div className="bg-gray-800 bg-opacity-50 p-4 rounded-xl">
                   <div className="text-2xl font-bold text-club8-turquoise mb-1">
                     {quotasDisponiveis}
                   </div>
-                  <div className="text-sm text-gray-300">Cotas Disponíveis</div>
+                  <div className="text-sm text-gray-300">Disponíveis</div>
                 </div>
                 <div className="bg-gray-800 bg-opacity-50 p-4 rounded-xl">
                   <div className="text-2xl font-bold text-white mb-1">
                     {totalQuotas}
                   </div>
-                  <div className="text-sm text-gray-300">Total de Cotas</div>
+                  <div className="text-sm text-gray-300">Total</div>
                 </div>
               </div>
             </div>
@@ -75,14 +75,14 @@ const QuotasAvailable = () => {
                 <TrendingUp className="w-8 h-8 text-club8-turquoise mx-auto mb-3" />
                 <h4 className="text-lg font-semibold mb-2">Captação Limitada</h4>
                 <p className="text-gray-300 text-sm">
-                  Apenas 200 cotas por rodada para garantir exclusividade
+                  Apenas 200 títulos por rodada para garantir exclusividade
                 </p>
               </div>
               <div className="text-center">
                 <Clock className="w-8 h-8 text-club8-turquoise mx-auto mb-3" />
-                <h4 className="text-lg font-semibold mb-2">Cotas Limitadas</h4>
+                <h4 className="text-lg font-semibold mb-2">Tempo Limitado</h4>
                 <p className="text-gray-300 text-sm">
-                  Garanta a sua antes que esgote. A próxima abertura de cotas seguirá a Lista de Espera
+                  Quando esgotados, próxima abertura apenas em 6 meses
                 </p>
               </div>
               <div className="text-center">
@@ -99,17 +99,17 @@ const QuotasAvailable = () => {
                 <div className="mb-6">
                   <div className="text-lg text-gray-300 mb-2">Restam apenas</div>
                   <div className="text-4xl font-bold club8-text-gradient mb-2">
-                    {quotasDisponiveis} cotas
+                    {quotasDisponiveis} títulos
                   </div>
                   <div className="text-lg text-gray-300">disponíveis nesta rodada</div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button onClick={() => {
                     document
-                        .getElementById('seja-socio')
+                        .getElementById('investir')
                         ?.scrollIntoView({ behavior: 'smooth' })
                   }} size="lg" className="bg-club8-turquoise hover:bg-club8-white text-club8-dark font-bold px-8 py-4 text-lg">
-                    Garantir Minha Cota
+                    Garantir Meu Título
                   </Button>
                   <Button onClick={() => {
                     navigate('/fila-de-espera');
@@ -123,7 +123,7 @@ const QuotasAvailable = () => {
               <div className="text-center">
                 <div className="mb-6">
                   <div className="text-2xl font-bold text-red-400 mb-2">
-                    🔴 Cotas Esgotadas
+                    🔴 Títulos Esgotados
                   </div>
                   <div className="text-lg text-gray-300">
                     Próxima rodada em 6 meses

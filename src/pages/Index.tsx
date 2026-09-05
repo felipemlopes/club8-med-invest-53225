@@ -6,7 +6,8 @@ import SecurityGuarantees from '@/components/SecurityGuarantees';
 import InvestmentPlans from '@/components/InvestmentPlans';
 import InvestmentSimulator from '@/components/InvestmentSimulator';
 import QuotasAvailable from '@/components/QuotasAvailable';
-import BonusSection from '@/components/BonusSection';
+// INDICACOES-DISABLED - ver .kiro/specs/desativar-programa-indicacoes
+// import BonusSection from '@/components/BonusSection';
 import MembershipSection from '@/components/MembershipSection';
 import Footer from '@/components/Footer';
 import {useEffect, useRef} from "react";
@@ -70,7 +71,9 @@ const Index = () => {
       <InvestmentPlans />
       <InvestmentSimulator />
       <QuotasAvailable />
+      {/* INDICACOES-DISABLED - ver .kiro/specs/desativar-programa-indicacoes
       <BonusSection />
+      */}
       <MembershipSection />
       <Footer />
     </div>

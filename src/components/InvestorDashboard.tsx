@@ -13,13 +13,14 @@ import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import EditPersonalDataDialog from './EditPersonalDataDialog';
-import ReferralSystem from './ReferralSystem';
+// INDICACOES-DISABLED - ver .kiro/specs/desativar-programa-indicacoes
+// import ReferralSystem from './ReferralSystem';
 import PerformanceChart from './PerformanceChart';
-import BonusTracker from './BonusTracker';
+// import BonusTracker from './BonusTracker';
 import DocumentsSection from './DocumentsSection';
 import FutureProjectionsCards from './FutureProjectionsCards';
 import investmentApi, {DashboardData, TimelineData, TimelineItem} from '@/lib/investmentApi';
-import MyReferral from "@/components/MyReferral.tsx";
+// import MyReferral from "@/components/MyReferral.tsx";
 import ContractSigningBanner from "@/components/ContractSigningBanner.tsx";
 import {ReactNode} from "react";
 
@@ -337,6 +338,7 @@ const InvestorDashboard = () => {
           </div>
         </div>
 
+        {/* INDICACOES-DISABLED - ver .kiro/specs/desativar-programa-indicacoes
         <div className="grid lg:grid-cols-2 gap-8 mb-8">
           <ReferralSystem />
           <BonusTracker />
@@ -345,6 +347,7 @@ const InvestorDashboard = () => {
         <div className="grid lg:grid-cols-1 gap-8 mb-8">
           <MyReferral />
         </div>
+        */}
 
         <div className="grid lg:grid-cols-2 gap-8">
           <div className="lg:col-span-2">

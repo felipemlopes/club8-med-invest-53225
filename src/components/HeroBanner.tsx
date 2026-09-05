@@ -1,29 +1,32 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, TrendingUp, Shield, Gift } from 'lucide-react';
+import { ChevronLeft, ChevronRight, TrendingUp, Shield, Landmark, Gift } from 'lucide-react';
 const HeroBanner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [{
-    title: "Club8 - Exclusivo para Médicos",
-    subtitle: "Investimentos de alta performance para profissionais da saúde",
-    description: "Uma plataforma premium com rentabilidade superior ao mercado",
-    icon: <TrendingUp className="w-12 h-12 text-club8-turquoise" />
-  }, {
-    title: "Rentabilidade Acima do Mercado",
-    subtitle: "De 21,6% a 24% ao ano ou mais",
-    description: "Supere os investimentos tradicionais com nossos planos exclusivos",
-    icon: <TrendingUp className="w-12 h-12 text-club8-turquoise" />
-  }, {
-    title: "Segurança e Transparência",
-    subtitle: "Investimentos seguros com total transparência",
-    description: "Seu dinheiro protegido com a segurança que você merece",
+    title: "Transparência e Lastro Imobiliário",
+    subtitle: "Investimentos estruturados com garantias reais",
+    description: "A solidez patrimonial que sua profissão exige.",
     icon: <Shield className="w-12 h-12 text-club8-turquoise" />
   }, {
+    title: "Performance Superior em Crédito Privado",
+    subtitle: "Remuneração alvo de 21,6% a 24% a.a.",
+    description: "Uma alternativa estratégica aos investimentos tradicionais.",
+    icon: <TrendingUp className="w-12 h-12 text-club8-turquoise" />
+  }, {
+    title: "Exclusividade e Inteligência Financeira para Médicos",
+    subtitle: "Debêntures estruturadas com foco em alta performance",
+    description: "Estrutura com garantias tangíveis.",
+    icon: <Landmark className="w-12 h-12 text-club8-turquoise" />
+  }
+  // INDICACOES-DISABLED - ver .kiro/specs/desativar-programa-indicacoes
+  /*, {
     title: "Benefícios Exclusivos",
-    subtitle: "Bonificações por renovação e indicações",
+    subtitle: "Bonificações por renovação de contrato",
     description: "Ganhe ainda mais com nosso programa de recompensas",
     icon: <Gift className="w-12 h-12 text-club8-turquoise" />
-  }];
+  }*/
+  ];
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % slides.length);
@@ -59,7 +62,7 @@ const HeroBanner = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button onClick={() => {
                 document
-                    .getElementById('seja-socio')
+                    .getElementById('investir')
                     ?.scrollIntoView({ behavior: 'smooth' })
               }} size="lg" className="bg-club8-turquoise hover:bg-club8-white text-club8-dark font-bold px-8 py-4 text-lg">
                 Quero Investir Agora
@@ -81,8 +84,8 @@ const HeroBanner = () => {
               <div className="absolute inset-8 bg-gradient-to-r from-club8-turquoise to-club8-turquoise-secondary rounded-full opacity-40"></div>
               <div className="absolute inset-16 bg-club8-turquoise rounded-full flex items-center justify-center">
                 <div className="text-center text-club8-dark">
-                  <div className="text-4xl font-bold mb-2">21,6% - 24%</div>
-                  <div className="text-lg font-semibold">ao ano</div>
+                  <div className="text-lg font-semibold mb-2">Remuneração Anual Alvo</div>
+                  <div className="text-4xl font-bold">21,6% a 24%</div>
                 </div>
               </div>
             </div>

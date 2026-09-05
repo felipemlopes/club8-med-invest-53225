@@ -86,7 +86,7 @@ const InvestmentPlans = () => {
                     <div className="text-2xl font-bold text-club8-dark">
                       {plan.cotas}
                     </div>
-                    <div className="text-sm text-gray-600">Cotas</div>
+                    <div className="text-sm text-gray-600">Títulos</div>
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-club8-dark">
@@ -129,7 +129,7 @@ const InvestmentPlans = () => {
 
               <Button onClick={() => {
                 document
-                    .getElementById('seja-socio')
+                    .getElementById('investir')
                     ?.scrollIntoView({ behavior: 'smooth' })
               }} variant="outline" className={`w-full py-4 text-lg font-bold ${plan.popular ? 'bg-club8-turquoise hover:bg-club8-white hover:border-club8-turquoise text-club8-dark' : 'bg-club8-dark hover:bg-club8-white hover:text-black hover:border-black text-white'}`} size="lg">
                 Quero Investir Agora

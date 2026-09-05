@@ -36,10 +36,9 @@ const Footer = () => {
             <h3 className="text-xl font-bold text-club8-turquoise mb-6">Navegação</h3>
             <ul className="space-y-4">
               <li><a href="/quem-somos" className="text-gray-300 hover:text-club8-turquoise transition-colors">Quem Somos</a></li>
-              <li><a href="/#seja-socio" className="text-gray-300 hover:text-club8-turquoise transition-colors">Seja Sócio</a></li>
+              <li><a href="#investir" className="text-gray-300 hover:text-club8-turquoise transition-colors">Investir</a></li>
               <li><a href="/#planos" className="text-gray-300 hover:text-club8-turquoise transition-colors">Planos</a></li>
-              <li><a href="/#simulador" className="text-gray-300 hover:text-club8-turquoise transition-colors">Simulador</a></li>
-              <li><a href="/#cotas" className="text-gray-300 hover:text-club8-turquoise transition-colors">Cotas</a></li>
+              <li><a href="#titulos" className="text-gray-300 hover:text-club8-turquoise transition-colors">Títulos</a></li>
               <li><a href="/garantias" className="text-gray-300 hover:text-club8-turquoise transition-colors">Garantias</a></li>
             </ul>
           </div>
@@ -54,28 +53,30 @@ const Footer = () => {
               <li className="text-gray-300">
                 <a href="/#planos" className="text-gray-300 hover:text-club8-turquoise transition-colors">Club8 Platinum - 2,0% a.m.</a>
               </li>
+              {/* INDICACOES-DISABLED - ver .kiro/specs/desativar-programa-indicacoes
               <li className="text-gray-300">
                 <a href="/#bonificacoes" className="text-gray-300 hover:text-club8-turquoise transition-colors">Programa de Indicações</a>
               </li>
               <li className="text-gray-300">
                 <a href="/#bonificacoes" className="text-gray-300 hover:text-club8-turquoise transition-colors">Bonificação por Renovação</a>
               </li>
+              */}
             </ul>
             <div className="mt-6 space-y-3">
               <Button
                   asChild
                   className="bg-club8-turquoise hover:bg-club8-white text-club8-dark font-semibold w-full"
               >
-                <a href="/#seja-socio" className="flex items-center justify-center gap-2">
+                <a href="/aporte" className="flex items-center justify-center gap-2">
                   <TrendingUp className="w-4 h-4" />
-                  Investir Agora
+                  Realizar Aporte
                 </a>
               </Button>
-              <Button 
+              <Button
                 asChild
                 className="bg-club8-turquoise hover:bg-club8-white text-club8-dark font-semibold w-full"
               >
-                <a href="/fila-de-espera">Lista de Espera</a>
+                <a href="/fila-de-espera">Fila de Espera</a>
               </Button>
             </div>
           </div>

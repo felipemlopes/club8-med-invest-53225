@@ -203,7 +203,7 @@ const MembershipSection = () => {
 
   if (showSuccess) {
     return (
-        <section id="seja-socio" className="py-12 md:py-20 bg-club8-dark">
+        <section id="investir" className="py-12 md:py-20 bg-club8-dark">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="max-w-2xl mx-auto text-center">
               <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-12">
@@ -228,7 +228,7 @@ const MembershipSection = () => {
   }
 
   return (
-      <section id="seja-socio" className="py-12 md:py-20 bg-club8-dark">
+      <section id="investir" className="py-12 md:py-20 bg-club8-dark">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 md:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6">

@@ -12,17 +12,14 @@ const Header = () => {
     label: 'Quem Somos',
     href: '/quem-somos'
   }, {
-    label: 'Seja Sócio',
-    href: '/#seja-socio'
+    label: 'Investir',
+    href: '#investir'
   }, {
     label: 'Planos',
     href: '/#planos'
   }, {
-    label: 'Simulador',
-    href: '/#simulador'
-  }, {
-    label: 'Cotas',
-    href: '/#cotas'
+    label: 'Títulos',
+    href: '#titulos'
   }, {
     label: 'Garantias',
     href: '/garantias'

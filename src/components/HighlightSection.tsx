@@ -1,31 +1,31 @@
 import { Button } from '@/components/ui/button';
-import { TrendingUp, Shield, Star } from 'lucide-react';
+import { TrendingUp, Shield, HeartPulse } from 'lucide-react';
 const HighlightSection = () => {
   const highlights = [{
     icon: <TrendingUp className="w-8 h-8" />,
-    title: "Rentabilidade Superior",
-    description: "De 21,6% a 24% ao ano ou mais",
-    detail: "Muito acima da poupança e CDB"
+    title: "Performance em Crédito Privado",
+    description: "Remuneração alvo de 21,6% a 24% ao ano",
+    detail: "Estratégia de rendimento superior aos índices de referência tradicionais"
   }, {
     icon: <Shield className="w-8 h-8" />,
-    title: "Máxima Segurança",
-    description: "Investimentos protegidos",
-    detail: "Total transparência e controle"
+    title: "Rigor em Garantias Reais",
+    description: "Operações com lastro imobiliário e garantias tangíveis",
+    detail: "Transparência total através de relatórios e escrituras registradas"
   }, {
-    icon: <Star className="w-8 h-8" />,
-    title: "Benefícios Únicos",
-    description: "Programa de recompensas",
-    detail: "Bonificações exclusivas para membros"
+    icon: <HeartPulse className="w-8 h-8" />,
+    title: "Ecossistema Exclusivo",
+    description: "Para médicos que cuidam da saúde de todos",
+    detail: "Um clube exclusivo para transformar dedicação em crescimento patrimonial contínuo"
   }];
   return <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-club8-dark mb-6">
-            Por que escolher o <span className="club8-text-gradient">Club8</span>?
+            Por que investir com o <span className="club8-text-gradient">Club8</span>?
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Uma plataforma exclusiva para médicos que buscam rentabilidade superior 
-            com a segurança que sua profissão merece
+            Uma plataforma exclusiva para médicos que buscam performance em crédito privado
+            com o lastro de garantias reais
           </p>
         </div>
 
@@ -48,25 +48,14 @@ const HighlightSection = () => {
 
         <div className="text-center bg-gradient-to-r from-club8-turquoise to-club8-turquoise-secondary p-12 rounded-3xl">
           <h3 className="text-3xl font-bold text-club8-dark mb-6">
-            Pronto para começar a investir?
+            Pronto para diversificar seu patrimônio?
           </h3>
           <p className="text-xl text-club8-dark mb-8 opacity-90">
-            Faça uma simulação gratuita ou comece a investir agora mesmo
+            Saiba mais sobre o Club8 e acesse os detalhes da emissão
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button onClick={() => {
-              document
-                  .getElementById('simulador')
-                  ?.scrollIntoView({ behavior: 'smooth' })
-            }} size="lg" className="bg-club8-dark hover:bg-club8-white text-white hover:text-black px-8 py-4 text-lg">
-              Fazer Simulação
-            </Button>
-            <Button onClick={() => {
-              document
-                  .getElementById('seja-socio')
-                  ?.scrollIntoView({ behavior: 'smooth' })
-            }} size="lg" variant="outline" className="border-club8-dark text-club8-dark hover:bg-club8-turquoise hover:text-black px-8 py-4 text-lg">
-              Quero Investir Agora
+          <div className="flex justify-center">
+            <Button asChild size="lg" className="bg-club8-dark hover:bg-gray-800 text-white px-8 py-4 text-lg">
+              <a href="#investir">Ver oportunidade</a>
             </Button>
           </div>
         </div>

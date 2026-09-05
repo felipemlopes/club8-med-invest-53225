@@ -134,9 +134,9 @@ const InvestmentFlow = () => {
           percent: response.data.plan_percent,
         });
         setStep(3);
-        toast({ title: 'Reserva efetuada!', description: 'Suas cotas foram reservadas com sucesso.' });
+        toast({ title: 'Reserva efetuada!', description: 'Seus títulos foram reservados com sucesso.' });
       } else {
-        toast({ title: 'Erro', description: 'Não foi possível reservar as cotas.', variant: 'destructive' });
+        toast({ title: 'Erro', description: 'Não foi possível reservar os títulos.', variant: 'destructive' });
       }
     } catch (error) {
       toast({ title: 'Erro', description: 'Ocorreu um erro ao reservar.', variant: 'destructive' });
@@ -273,7 +273,7 @@ const InvestmentFlow = () => {
           {step > 0 && (
             <div className="flex items-center justify-center mb-12">
               <div className="flex items-center gap-2 md:gap-3">
-                <StepBubble n={1} label="Cotas" />
+                <StepBubble n={1} label="Títulos" />
                 <Connector active={step >= 2} />
                 <StepBubble n={2} label="Pré-reserva" />
                 <Connector active={step >= 3} />
@@ -308,7 +308,7 @@ const InvestmentFlow = () => {
                   retorno consistente, segurança real e exclusividade.
                 </p>
                 <p>
-                  Agora é hora de garantir a sua participação. Caso ainda existam cotas disponíveis nesta
+                  Agora é hora de garantir a sua participação. Caso ainda existam títulos disponíveis nesta
                   rodada, você poderá adquirir as suas em poucos minutos. Se a rodada já estiver encerrada,
                   você terá prioridade para entrar na <strong>lista de espera</strong> da próxima abertura.
                 </p>
@@ -329,7 +329,7 @@ const InvestmentFlow = () => {
                     size="lg"
                     className="bg-club8-turquoise hover:bg-club8-turquoise-secondary text-club8-dark font-semibold px-8"
                   >
-                    Adquirir minhas cotas
+                    Adquirir meus títulos
                   </Button>
                 )}
               </div>
@@ -342,15 +342,15 @@ const InvestmentFlow = () => {
               <div className="text-center space-y-3">
                 <Sparkles className="w-10 h-10 text-club8-turquoise mx-auto" />
                 <h1 className="text-3xl md:text-4xl font-bold text-club8-dark">
-                  Quantas cotas você deseja <span className="club8-text-gradient">adquirir</span>?
+                  Quantos títulos você deseja <span className="club8-text-gradient">adquirir</span>?
                 </h1>
                 <p className="text-gray-600 max-w-2xl mx-auto">
-                  Cada cota Club8 tem o valor de{' '}
+                  Cada título Club8 tem o valor de{' '}
                   <strong>
                     {valorCota > 0
                       ? `R$ ${valorCota.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`
                       : '...'}
-                  </strong>. As cotas são limitadas por rodada
+                  </strong>. Os títulos são limitados por rodada
                   para preservar a exclusividade e a qualidade do retorno aos investidores.
                 </p>
               </div>
@@ -369,11 +369,11 @@ const InvestmentFlow = () => {
                         <div>
                           <p className="text-gray-300 text-sm">Disponibilidade desta rodada</p>
                           <p className="text-3xl font-bold club8-text-gradient">
-                            {quotasDisponiveis} de {totalQuotas} cotas
+                            {quotasDisponiveis} de {totalQuotas} títulos
                           </p>
                         </div>
                         <Badge className="bg-club8-turquoise text-club8-dark border-0">
-                          {((soldQuotas / totalQuotas) * 100).toFixed(0)}% reservadas
+                          {((soldQuotas / totalQuotas) * 100).toFixed(0)}% reservados
                         </Badge>
                       </div>
                       <div className="w-full bg-gray-700 rounded-full h-3">
@@ -391,7 +391,7 @@ const InvestmentFlow = () => {
                 <Card className="border-2 border-red-200 bg-red-50">
                   <CardContent className="p-6 text-center space-y-4">
                     <AlertTriangle className="w-10 h-10 text-red-500 mx-auto" />
-                    <h3 className="text-xl font-bold text-club8-dark">Cotas esgotadas nesta rodada</h3>
+                    <h3 className="text-xl font-bold text-club8-dark">Títulos esgotados nesta rodada</h3>
                     <p className="text-gray-700">
                       Entre na lista de espera e seja avisado em primeira mão na próxima abertura.
                     </p>
@@ -407,7 +407,7 @@ const InvestmentFlow = () => {
                 <>
                   <Card className="border-club8-turquoise/30">
                     <CardContent className="p-6 md:p-8">
-                      <p className="text-center text-gray-600 mb-6">Selecione a quantidade de cotas</p>
+                      <p className="text-center text-gray-600 mb-6">Selecione a quantidade de títulos</p>
                       <div className="flex items-center justify-center gap-6 mb-8">
                         <Button
                           variant="outline"
@@ -420,7 +420,7 @@ const InvestmentFlow = () => {
                         </Button>
                         <div className="text-center min-w-[100px]">
                           <div className="text-6xl font-bold text-club8-dark">{quotas}</div>
-                          <div className="text-xs text-gray-500 mt-1">{quotas === 1 ? 'cota' : 'cotas'}</div>
+                          <div className="text-xs text-gray-500 mt-1">{quotas === 1 ? 'título' : 'títulos'}</div>
                         </div>
                         <Button
                           variant="outline"
@@ -457,7 +457,7 @@ const InvestmentFlow = () => {
                   </Card>
 
                   <p className="text-xs text-center text-gray-500">
-                    As cotas são <strong>limitadas</strong>. Caso a rodada se esgote antes da sua reserva,
+                    Os títulos são <strong>limitados</strong>. Caso a rodada se esgote antes da sua reserva,
                     você poderá entrar na <Link to="/fila-de-espera" className="text-club8-turquoise underline">lista de espera</Link>.
                   </p>
 
@@ -481,10 +481,10 @@ const InvestmentFlow = () => {
                   Termo de <span className="club8-text-gradient">Pré-reserva</span>
                 </h2>
                 <p className="text-gray-700 leading-relaxed">
-                  A pré-reserva é o passo que <strong>garante a sua cota</strong> dentro de uma rodada com vagas
-                  estritamente limitadas. Ao realizá-la, suas cotas ficam bloqueadas e indisponíveis para outros
+                  A pré-reserva é o passo que <strong>garante o seu título</strong> dentro de uma rodada com vagas
+                  estritamente limitadas. Ao realizá-la, seus títulos ficam bloqueados e indisponíveis para outros
                   investidores por <strong>24 horas</strong> — tempo suficiente para você efetivar o pagamento e
-                  formalizar sua entrada no Club8. Não havendo pagamento neste prazo, as cotas retornam ao mercado
+                  formalizar sua entrada no Club8. Não havendo pagamento neste prazo, os títulos retornam ao mercado
                   imediatamente para os próximos interessados.
                 </p>
               </div>
@@ -497,7 +497,7 @@ const InvestmentFlow = () => {
                 <CardContent>
                   <div className="grid sm:grid-cols-2 gap-x-8 gap-y-3">
                     <div className="flex justify-between border-b pb-2">
-                      <span className="text-gray-600">Quantidade de cotas:</span>
+                      <span className="text-gray-600">Quantidade de títulos:</span>
                       <span className="font-semibold text-club8-dark">{quotas}</span>
                     </div>
                     <div className="flex justify-between border-b pb-2">
@@ -573,7 +573,7 @@ const InvestmentFlow = () => {
                       <p className="text-2xl font-bold club8-text-gradient">{totalQuotas}</p>
                     </div>
                     <div className="bg-white/5 rounded-lg p-4 text-center">
-                      <p className="text-xs text-gray-400 uppercase">Já reservadas</p>
+                      <p className="text-xs text-gray-400 uppercase">Já reservados</p>
                       <p className="text-2xl font-bold text-white">{soldQuotas}</p>
                     </div>
                     <div className="bg-white/5 rounded-lg p-4 text-center">
@@ -595,7 +595,7 @@ const InvestmentFlow = () => {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {[
-                    'Estou ciente de que esta é uma reserva temporária de cotas',
+                    'Estou ciente de que esta é uma reserva temporária de títulos',
                     'Tenho até 24 horas para realizar o pagamento',
                     'Após o pagamento, receberei o contrato definitivo para assinatura',
                     'Caso não realize o pagamento no prazo, a reserva será automaticamente cancelada',
@@ -647,7 +647,7 @@ const InvestmentFlow = () => {
                       Reservando...
                     </>
                   ) : (
-                    "Reservar minhas cotas"
+                    "Reservar meus títulos"
                   )}
                 </Button>
               </div>
@@ -662,7 +662,7 @@ const InvestmentFlow = () => {
                   Pagamento via <span className="club8-text-gradient">PIX</span>
                 </h2>
                 <p className="text-gray-600">
-                  Reserva confirmada! Efetive o pagamento em até 24 horas para garantir suas cotas.
+                  Reserva confirmada! Efetive o pagamento em até 24 horas para garantir seus títulos.
                 </p>
               </div>
 
@@ -670,7 +670,7 @@ const InvestmentFlow = () => {
                 <CardContent className="p-4 flex gap-3 items-start">
                   <Clock className="w-5 h-5 text-yellow-700 flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-yellow-900">
-                    Sua reserva expira em <strong>{deadlineFormatted}</strong>. Após esse horário, as cotas voltam
+                    Sua reserva expira em <strong>{deadlineFormatted}</strong>. Após esse horário, os títulos voltam
                     a ficar disponíveis para outros investidores.
                   </p>
                 </CardContent>
@@ -682,7 +682,7 @@ const InvestmentFlow = () => {
                 </CardHeader>
                 <CardContent className="space-y-2">
                   <div className="flex justify-between"><span>Plano:</span><strong>{confirmedPlan?.name ?? planName}</strong></div>
-                  <div className="flex justify-between"><span>Cotas:</span><strong>{quotas}</strong></div>
+                  <div className="flex justify-between"><span>Títulos:</span><strong>{quotas}</strong></div>
                   <div className="flex justify-between"><span>Rentabilidade:</span><strong className="club8-text-gradient">{(confirmedPlan?.percent ?? monthlyRate).toString().replace('.', ',')}% a.m.</strong></div>
                   <div className="flex justify-between border-t pt-2 mt-2">
                     <span>Valor total:</span>
@@ -787,7 +787,7 @@ const InvestmentFlow = () => {
                   <div className="bg-gray-50 p-4 rounded-lg space-y-2 text-sm">
                     <div className="flex justify-between"><span>Documento:</span><strong>Certificado da Debênture Club8</strong></div>
                     <div className="flex justify-between"><span>Investimento:</span><strong>R$ {investmentAmount.toLocaleString('pt-BR')},00</strong></div>
-                    <div className="flex justify-between"><span>Cotas:</span><strong>{quotas} ({planName})</strong></div>
+                    <div className="flex justify-between"><span>Títulos:</span><strong>{quotas} ({planName})</strong></div>
                   </div>
 
                   {!contractSigned ? (

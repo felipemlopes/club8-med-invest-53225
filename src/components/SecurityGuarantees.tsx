@@ -9,11 +9,12 @@ const SecurityGuarantees = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
             <Shield className="inline-block w-12 h-12 mr-4 text-club8-turquoise" />
-            Garantias <span className="club8-text-gradient">Reais</span> do Investimento
+            Estrutura de Mitigação de Risco e{' '}
+            <span className="club8-text-gradient">Garantias Reais</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Seu investimento é protegido por três tipos de garantias sólidas e tangíveis, 
-            oferecendo a segurança que você merece
+            Sua alocação é lastreada por mecanismos jurídicos de garantia real,
+            oferecendo solidez patrimonial à emissão.
           </p>
         </div>
 
@@ -25,11 +26,11 @@ const SecurityGuarantees = () => {
             <div className="rounded-2xl p-8">
               <div className="text-center mb-6">
                 <Building className="w-16 h-16 text-club8-turquoise mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-3">Hipotecárias</h3>
+                <h3 className="text-2xl font-bold mb-3">Garantia Hipotecária</h3>
                 <p className="text-gray-300">
-                  Garantias lastreadas em imóveis e propriedades,
-                  oferecendo segurança real e tangível para seu investimento
-                  através de ativos imobiliários sólidos
+                  Títulos com garantia real sobre ativos imobiliários selecionados,
+                  devidamente averbados em cartório para assegurar a prioridade de
+                  recebimento dos debenturistas.
                 </p>
               </div>
             </div>
@@ -44,9 +45,8 @@ const SecurityGuarantees = () => {
                 <FileCheck className="w-16 h-16 text-club8-turquoise mx-auto mb-4" />
                 <h3 className="text-2xl font-bold mb-3">Alienação Fiduciária</h3>
                 <p className="text-gray-300">
-                  Garantias com transferência de propriedade de bens móveis e imóveis,
-                  assegurando o cumprimento das obrigações e proteção total
-                  do capital investido
+                  Mecanismo jurídico de transferência da propriedade resolúvel de ativos
+                  como garantia direta do cumprimento das obrigações da emissora.
                 </p>
               </div>
             </div>
@@ -59,11 +59,10 @@ const SecurityGuarantees = () => {
             <div className="rounded-2xl p-8">
               <div className="text-center mb-6">
                 <Lock className="w-16 h-16 text-club8-turquoise mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-3">Patrimônio Sólido</h3>
+                <h3 className="text-2xl font-bold mb-3">Solidez Patrimonial</h3>
                 <p className="text-gray-300">
-                  Mais de R$ 1 bilhão em patrimônio como garantia adicional,
-                  assegurando a solidez e confiabilidade dos investimentos
-                  com lastro patrimonial robusto
+                  Lastro patrimonial superior a R$ 1 bilhão, reforçando a capacidade de
+                  pagamento e a robustez financeira do Club8.
                 </p>
               </div>
             </div>
@@ -75,25 +74,24 @@ const SecurityGuarantees = () => {
           <div className="bg-gradient-to-r from-club8-turquoise to-club8-turquoise-secondary rounded-3xl p-8 text-club8-dark">
             <div className="text-center">
               <h3 className="text-3xl font-bold mb-6">
-                Investimento com Segurança Máxima
+                Investimento Estruturado com Lastro Real
               </h3>
               <p className="text-xl mb-8 opacity-90">
-                Diferente de outros investimentos do mercado, o Club8 oferece três tipos de garantias reais, 
-                proporcionando tranquilidade total para médicos que buscam rentabilidade superior com segurança
+                O Club8 combina rentabilidade estratégica com uma robusta estrutura de mitigação de risco. Através de garantias reais e lastro imobiliário, oferecemos a solidez necessária para médicos que buscam diversificação inteligente em crédito privado com rentabilidade alvo diferenciada.
               </p>
-              
+
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">R$ 1+ Bi</div>
-                  <div className="text-lg font-semibold">Patrimônio em Garantia</div>
+                  <div className="text-3xl font-bold mb-2">+ R$ 1 Bi</div>
+                  <div className="text-lg font-semibold">Patrimônio de Lastro do Grupo</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">3 Tipos</div>
-                  <div className="text-lg font-semibold">Garantias Reais</div>
+                  <div className="text-3xl font-bold mb-2">2 Mecanismos</div>
+                  <div className="text-lg font-semibold">Garantia Real e Fiduciária</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">24%</div>
-                  <div className="text-lg font-semibold">Rentabilidade Anual</div>
+                  <div className="text-3xl font-bold mb-2">24%*</div>
+                  <div className="text-lg font-semibold">Remuneração Alvo Anual</div>
                 </div>
               </div>
             </div>

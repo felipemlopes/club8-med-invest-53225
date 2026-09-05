@@ -17,7 +17,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import LGPD from "./pages/LGPD";
 import NotFound from "./pages/NotFound";
-import {ReferralTracker} from "@/components/ReferralTracker.tsx";
+// INDICACOES-DISABLED - ver .kiro/specs/desativar-programa-indicacoes
+// import {ReferralTracker} from "@/components/ReferralTracker.tsx";
 import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
@@ -29,7 +30,8 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <ReferralTracker />
+          {/* INDICACOES-DISABLED - ver .kiro/specs/desativar-programa-indicacoes */}
+          {/* <ReferralTracker /> */}
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />

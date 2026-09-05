@@ -77,6 +77,7 @@ const FutureProjectionsCards = () => {
         </div>
       </Card>
 
+      {/* INDICACOES-DISABLED - ver .kiro/specs/desativar-programa-indicacoes
       <Card className="p-6 bg-white border-club8-turquoise">
         <div className="flex items-center justify-between">
           <div>
@@ -91,6 +92,7 @@ const FutureProjectionsCards = () => {
           <TrendingUp className="w-8 h-8 text-club8-dark-green" />
         </div>
       </Card>
+      */}
 
       <Card className="p-6 bg-white border-club8-turquoise">
         <div className="flex items-center justify-between">
