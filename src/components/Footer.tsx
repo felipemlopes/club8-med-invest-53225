@@ -109,6 +109,15 @@ const Footer = () => {
           </div>
         </div>
 
+        <div className="mt-8 p-4 bg-club8-dark/50 rounded-xl border border-gray-700">
+          <p className="text-xs text-gray-400 text-center">
+            * A rentabilidade de 24% ao ano é uma meta (rentabilidade alvo) e não uma garantia de retorno.
+            Os valores mencionados referem-se à remuneração alvo para investidores que adquirirem 2 (dois) ou mais títulos (debêntures) no momento da aplicação.
+            Em contrato, as condições e obrigações ali formalizadas serão integralmente cumpridas.
+            Recomendamos a leitura completa dos documentos da emissão antes de investir.
+          </p>
+        </div>
+
         <div className="border-t border-gray-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-300 text-sm">
